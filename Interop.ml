@@ -1,9 +1,6 @@
-
 module Ast = Spider_monkey_ast
 
 let main content =
-  (* Make the parser as permissive as possible.
-     TODO: make these CLI flags *)
   let parse_options = Some Parser_env.({
       esproposal_class_instance_fields = true;
       esproposal_class_static_fields = true;
@@ -40,25 +37,35 @@ let main content =
             | _ -> name
 
           )
-        | _, Function { Function.params; Function.returnType; _ (* rest; typeParameters*) } -> (
-            let params = String.concat "" (List.map (fun param ->
-                let (_, {Ast.Type.Function.Param.name; Ast.Type.Function.Param.optional; Ast.Type.Function.Param.typeAnnotation; _}) = param
-                in
-                let (_, name) = name in
-                let prefix = if optional then (
-                    "?" ^ Ast.Identifier.(name.name) ^ ":"
-                  )
-                  else (
-                    ""
-                  )
-                in
-                prefix ^ (process_type typeAnnotation) ^ " -> "
-              ) params)
+        | _, Function { Function.params; returnType; rest; _ (*typeParameters*) } -> (
+            let params =
+              String.concat "" (List.map (fun param ->
+                  let (_, {Ast.Type.Function.Param.name; optional; typeAnnotation; _}) = param
+                  in
+                  let (_, name) = name in
+                  let prefix = if optional then (
+                      "?" ^ Ast.Identifier.(name.name) ^ ":"
+                    )
+                    else (
+                      ""
+                    )
+                  in
+                  prefix ^ (process_type typeAnnotation) ^ " -> "
+                ) params)
             in
-            params ^ (process_type returnType);
+            let restParam = match rest with (* TODO: once we figure out how to do this... *)
+              | Some restParam -> "'rest array -> "
+              | None -> ""
+            in
+            params ^ restParam ^ (process_type returnType);
           )
         | _ -> assert false (* TODO support more! *)
       )
+
+  and hasRestParameter value =
+    Ast.Type.(match value with
+        | _, Function {Function.rest = Some _; _} -> true
+        | _ -> false)
   and create_interop statements =
     Ast.Statement.(match statements with
         | (_, DeclareVariable { DeclareVariable.id; }) :: tail -> (
@@ -101,8 +108,12 @@ let main content =
           )
         | (_, DeclareClass { Interface.id; _; }) :: tail -> (
             let _, { Ast.Identifier.name; _ } = id in
-            print_string ("external create_" ^ name);
-            print_newline ();
+            print_string ("module " ^ (String.capitalize name) ^ " = struct");
+            print_newline();
+            (* print_string (process_object name obj); *)
+            print_newline();
+            print_string ("end");
+            print_newline();
             create_interop tail
           )
         | (_, DeclareModule _) :: tail -> create_interop tail
@@ -120,7 +131,12 @@ let main content =
               (_, { Ast.Literal.value = Ast.Literal.String name; _ })
           | Ast.Expression.Object.Property.Identifier
               (_, { Ast.Identifier.name; _ }) ->
-            process_properties tail (result ^ "  external " ^ name ^ ":" ^(process_type value) ^ " = \"" ^ moduleName ^ "." ^ name ^ "\" [@@bs.val];;\n")
+            let splice = if hasRestParameter value then
+                " [@@bs.splice]"
+              else
+                ""
+            in
+            process_properties tail (result ^ "  external " ^ (fixUpperCase name) ^ ": " ^(process_type value) ^ " = \"" ^ moduleName ^ "." ^ name ^ "\" [@@bs.val]" ^ splice ^ "\n")
 
           | _ -> assert false
         )
