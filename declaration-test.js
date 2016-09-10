@@ -82,21 +82,6 @@ declare var Math: {
 };
 
 declare class Number {
-  static EPSILON: number;
-  static MAX_SAFE_INTEGER: number;
-  static MAX_VALUE: number;
-  static MIN_SAFE_INTEGER: number;
-  static MIN_VALUE: number;
-  static NaN: number;
-  static NEGATIVE_INFINITY: number;
-  static POSITIVE_INFINITY: number;
-  static (value:any):number;
-  static isFinite(value: any): boolean;
-  static isInteger(value: any): boolean;
-  static isNaN(value: any): boolean;
-  static isSafeInteger(value: any): boolean;
-  static parseFloat(value: string): number;
-  static parseInt(value: string): number;
   toExponential(fractionDigits?: number): string;
   toFixed(fractionDigits?: number): string;
   toPrecision(precision?: number): string;

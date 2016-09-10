@@ -106,10 +106,12 @@ let main content =
             print_newline ();
             create_interop tail
           )
-        | (_, DeclareClass { Interface.id; _; }) :: tail -> (
+        | (_, DeclareClass { Interface.id; body; _ }) :: tail -> (
             let _, { Ast.Identifier.name; _ } = id in
+            let _, obj = body in
             print_string ("module " ^ (String.capitalize name) ^ " = struct");
             print_newline();
+            print_string (process_object name obj);
             (* print_string (process_object name obj); *)
             print_newline();
             print_string ("end");
@@ -153,7 +155,6 @@ let load_file f =
   close_in ic;
   (s)
 ;;
-
 
 let file_name = (Array.get Sys.argv 1) in
 let contents = load_file file_name in
