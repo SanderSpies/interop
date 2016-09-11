@@ -9,6 +9,12 @@ external decodeURI: string -> string = "decodeURI" [@@bs.val];;
 external decodeURIComponent: string -> string = "decodeURIComponent" [@@bs.val];;
 external encodeURI: string -> string = "encodeURI" [@@bs.val];;
 external encodeURIComponent: string -> string = "encodeURIComponent" [@@bs.val];;
+external btoa: string -> string = "btoa" [@@bs.val];;
+external atob: string -> string = "atob" [@@bs.val];;
+external clearInterval: ?intervalId:float -> unit = "clearInterval" [@@bs.val];;
+external clearTimeout: ?timeoutId:'a -> unit = "clearTimeout" [@@bs.val];;
+external setTimeout: 'a -> ?ms:float -> 'rest array -> float = "setTimeout" [@@bs.val];;
+external setInterval: 'a -> ?ms:float -> 'rest array -> float = "setInterval" [@@bs.val];;
 module Console = struct
   external _assert: 'a -> 'rest array -> unit = "console.assert" [@@bs.val] [@@bs.splice]
   external clear: unit -> unit = "console.clear" [@@bs.val]
@@ -81,16 +87,32 @@ module Math = struct
 end
 
 module Boolean = struct
-  external valueOf: unit -> bool = "Boolean.valueOf" [@@bs.val]
+  type t
+  external create:'a -> bool -> t = "Boolean" [@@bs.new] 
+  external valueOf: t -> unit -> bool = "" [@@bs.send]
 
 end
 module Number = struct
-  external parseFloat: string -> float = "Number.parseFloat" [@@bs.val]
-  external parseInt: string -> float = "Number.parseInt" [@@bs.val]
-  external toExponential: ?fractionDigits:float -> string = "Number.toExponential" [@@bs.val]
-  external toFixed: ?fractionDigits:float -> string = "Number.toFixed" [@@bs.val]
-  external toPrecision: ?precision:float -> string = "Number.toPrecision" [@@bs.val]
-  external toString: ?radix:float -> string = "Number.toString" [@@bs.val]
-  external valueOf: unit -> float = "Number.valueOf" [@@bs.val]
+  type t
+  external create:'a -> float -> t = "Number" [@@bs.new] 
+  external _EPSILON: float = "" [@@bs.val]
+  external _MAX_SAFE_INTEGER: float = "" [@@bs.val]
+  external _MAX_VALUE: float = "" [@@bs.val]
+  external _MIN_SAFE_INTEGER: float = "" [@@bs.val]
+  external _MIN_VALUE: float = "" [@@bs.val]
+  external _NaN: float = "" [@@bs.val]
+  external _NEGATIVE_INFINITY: float = "" [@@bs.val]
+  external _POSITIVE_INFINITY: float = "" [@@bs.val]
+  external isFinite: 'a -> bool = "" [@@bs.val]
+  external isInteger: 'a -> bool = "" [@@bs.val]
+  external isNaN: 'a -> bool = "" [@@bs.val]
+  external isSafeInteger: 'a -> bool = "" [@@bs.val]
+  external parseFloat: string -> float = "" [@@bs.val]
+  external parseInt: string -> float = "" [@@bs.val]
+  external toExponential: t -> ?fractionDigits:float -> string = "" [@@bs.send]
+  external toFixed: t -> ?fractionDigits:float -> string = "" [@@bs.send]
+  external toPrecision: t -> ?precision:float -> string = "" [@@bs.send]
+  external toString: t -> ?radix:float -> string = "" [@@bs.send]
+  external valueOf: t -> unit -> float = "" [@@bs.send]
 
 end

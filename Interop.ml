@@ -34,6 +34,7 @@ let main content =
         | _, Void -> "unit"
         | _, Number -> "float"
         | _, Boolean -> "bool"
+        | _, Any -> "'a"
         | _, Generic {
             Generic.id = Generic.Identifier.Unqualified (id);
             _
@@ -41,39 +42,41 @@ let main content =
             let _, { Ast.Identifier.name; _ } = id in
             match name with
             | "mixed" -> "'a" (* TODO: b c d e etc. *)
+            | "any" -> "'a" (* TODO: b c d e etc. *)
             | _ -> name
 
           )
         | _, Function { Function.params; returnType; rest; _ (*typeParameters*) } -> (
-            let params =
-              String.concat "" (List.map (fun param ->
-                  let (_, {Ast.Type.Function.Param.name; optional; typeAnnotation; _}) = param
-                  in
-                  let (_, name) = name in
-                  let prefix = if optional then (
-                      "?" ^ Ast.Identifier.(name.name) ^ ":"
-                    )
-                    else (
-                      ""
-                    )
-                  in
-                  prefix ^ (process_type typeAnnotation) ^ " -> "
-                ) params)
-            in
-            let restParam = match rest with
-              | Some restParam -> "'rest array -> "
-              | None -> ""
-            in
-            let fix = if params = "" && restParam = "" then
-                "unit -> "
-              else
-                ""
-            in
-            fix ^ params ^ restParam ^ (process_type returnType);
+            process_function params returnType rest
           )
         | _ -> assert false (* TODO support more! *)
       )
-
+  and process_function params returnType rest =
+    let params =
+      String.concat "" (List.map (fun param ->
+          let (_, {Ast.Type.Function.Param.name; optional; typeAnnotation; _}) = param
+          in
+          let (_, name) = name in
+          let prefix = if optional then (
+              "?" ^ Ast.Identifier.(name.name) ^ ":"
+            )
+            else (
+              ""
+            )
+          in
+          prefix ^ (process_type typeAnnotation) ^ " -> "
+        ) params)
+    in
+    let restParam = match rest with
+      | Some restParam -> "'rest array -> "
+      | None -> ""
+    in
+    let fix = if params = "" && restParam = "" then
+        "unit -> "
+      else
+        ""
+    in
+    fix ^ params ^ restParam ^ (process_type returnType)
   and hasRestParameter value =
     Ast.Type.(match value with
         | _, Function {Function.rest = Some _; _} -> true
@@ -121,10 +124,9 @@ let main content =
         | (_, DeclareClass { Interface.id; body; _ }) :: tail -> (
             let _, { Ast.Identifier.name; _ } = id in
             let _, obj = body in
-            print_string ("module " ^ (String.capitalize name) ^ " = struct");
+            print_string ("module " ^ (String.capitalize name) ^ " = struct\n  type t");
             print_newline();
-            print_string (process_object name obj);
-            (* print_string (process_object name obj); *)
+            print_string (process_class name obj);
             print_newline();
             print_string ("end");
             print_newline();
@@ -134,7 +136,38 @@ let main content =
         | (_, Empty) :: tail -> create_interop tail
         | _ :: tail -> create_interop tail
         | [] -> ())
-
+  and process_class moduleName (obj:Ast.Type.Object.t) =
+    let {Ast.Type.Object.properties; callProperties; _} = obj in
+    let rec process_properties properties result =
+      match properties with
+      | (_, {Ast.Type.Object.Property.key; value; static;_}) :: tail ->  (
+          match key with
+          | Ast.Expression.Object.Property.Literal
+              (_, { Ast.Literal.value = Ast.Literal.String name; _ })
+          | Ast.Expression.Object.Property.Identifier
+              (_, { Ast.Identifier.name; _ }) ->
+            let splice = if hasRestParameter value then
+                " [@@bs.splice]"
+              else
+                ""
+            in
+            let (t, bsPPX) = if static then
+                ("", "[@@bs.val]")
+              else
+                ("t -> ", "[@@bs.send]")
+            in
+            process_properties tail (result ^ "  external " ^ (fixReservedNames (fixUpperCase name)) ^ ": " ^ t ^(process_type value) ^ " = \"\" " ^ bsPPX ^ splice ^ "\n")
+          | _ -> assert false
+        )
+      | _ -> result
+    and process_call_properties moduleName properties result =
+      Ast.Type.(match properties with
+          | (_, {Ast.Type.Object.CallProperty.value; _}) :: tail -> (
+              let _, {Function.params; returnType; rest; _} = value in
+              process_call_properties moduleName tail (result ^ "  external create:" ^ (process_function params returnType rest) ^ " -> t = \"" ^ moduleName ^ "\" [@@bs.new] \n")
+            )
+          | [] -> result)
+    in (process_call_properties moduleName callProperties "") ^ (process_properties properties "")
   and process_object moduleName (obj:Ast.Type.Object.t) =
     let {Ast.Type.Object.properties; _} = obj in
     let rec process_properties properties result =

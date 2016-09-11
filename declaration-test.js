@@ -10,6 +10,13 @@ declare function decodeURI(encodedURI: string): string;
 declare function decodeURIComponent(encodedURIComponent: string): string;
 declare function encodeURI(uri: string): string;
 declare function encodeURIComponent(uriComponent: string): string;
+declare function btoa(rawString: string): string;
+declare function atob(encodedString: string): string;
+
+declare function clearInterval(intervalId?: number): void;
+declare function clearTimeout(timeoutId?: any): void;
+declare function setTimeout(callback: any, ms?: number, ...args: Array<any>): number;
+declare function setInterval(callback: any, ms?: number, ...args: Array<any>): number;
 
 declare var console: {
   assert(condition: mixed, ...data: Array<any>): void;
@@ -85,22 +92,22 @@ declare var Math: {
 declare class Boolean {
   static (value:any):boolean;
   valueOf(): boolean;
-}
+};
 
 declare class Number {
-  /*static EPSILON: number;
+  static EPSILON: number;
   static MAX_SAFE_INTEGER: number;
   static MAX_VALUE: number;
   static MIN_SAFE_INTEGER: number;
   static MIN_VALUE: number;
   static NaN: number;
   static NEGATIVE_INFINITY: number;
-  static POSITIVE_INFINITY: number;*/
-  /*static (value:any):number;*/
-  /*static isFinite(value: any): boolean;
+  static POSITIVE_INFINITY: number;
+  static (value:any): number;
+  static isFinite(value: any): boolean;
   static isInteger(value: any): boolean;
   static isNaN(value: any): boolean;
-  static isSafeInteger(value: any): boolean;*/
+  static isSafeInteger(value: any): boolean;
   static parseFloat(value: string): number;
   static parseInt(value: string): number;
   toExponential(fractionDigits?: number): string;
