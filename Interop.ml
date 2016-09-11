@@ -21,6 +21,13 @@ let main content =
     else
       str
   in
+  let reservedNames = ["assert"; "exception"] in
+  let fixReservedNames str =
+    if (List.exists (fun a -> a = str) reservedNames) then
+      "_" ^ str
+    else
+      str
+  in
   let rec process_type typeAnnotation =
     Ast.Type.(match typeAnnotation with
         | _, String -> "string"
@@ -53,11 +60,16 @@ let main content =
                   prefix ^ (process_type typeAnnotation) ^ " -> "
                 ) params)
             in
-            let restParam = match rest with (* TODO: once we figure out how to do this... *)
+            let restParam = match rest with
               | Some restParam -> "'rest array -> "
               | None -> ""
             in
-            params ^ restParam ^ (process_type returnType);
+            let fix = if params = "" && restParam = "" then
+                "unit -> "
+              else
+                ""
+            in
+            fix ^ params ^ restParam ^ (process_type returnType);
           )
         | _ -> assert false (* TODO support more! *)
       )
@@ -138,7 +150,7 @@ let main content =
               else
                 ""
             in
-            process_properties tail (result ^ "  external " ^ (fixUpperCase name) ^ ": " ^(process_type value) ^ " = \"" ^ moduleName ^ "." ^ name ^ "\" [@@bs.val]" ^ splice ^ "\n")
+            process_properties tail (result ^ "  external " ^ (fixReservedNames (fixUpperCase name)) ^ ": " ^(process_type value) ^ " = \"" ^ moduleName ^ "." ^ name ^ "\" [@@bs.val]" ^ splice ^ "\n")
 
           | _ -> assert false
         )

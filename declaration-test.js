@@ -12,14 +12,14 @@ declare function encodeURI(uri: string): string;
 declare function encodeURIComponent(uriComponent: string): string;
 
 declare var console: {
-  _assert(condition: mixed, ...data: Array<any>): void;
+  assert(condition: mixed, ...data: Array<any>): void;
   clear(): void;
   count(label: string): void;
   debug(...data: Array<any>): void;
   dir(...data: Array<any>): void;
   dirxml(...data: Array<any>): void;
   error(...data: Array<any>): void;
-  _exception(...data: Array<any>): void;
+  exception(...data: Array<any>): void;
   group(...data: Array<any>): void;
   groupCollapsed(...data: Array<any>): void;
   groupEnd(): void;
@@ -81,7 +81,28 @@ declare var Math: {
   trunc(x: number): number;
 };
 
+
+declare class Boolean {
+  static (value:any):boolean;
+  valueOf(): boolean;
+}
+
 declare class Number {
+  /*static EPSILON: number;
+  static MAX_SAFE_INTEGER: number;
+  static MAX_VALUE: number;
+  static MIN_SAFE_INTEGER: number;
+  static MIN_VALUE: number;
+  static NaN: number;
+  static NEGATIVE_INFINITY: number;
+  static POSITIVE_INFINITY: number;*/
+  /*static (value:any):number;*/
+  /*static isFinite(value: any): boolean;
+  static isInteger(value: any): boolean;
+  static isNaN(value: any): boolean;
+  static isSafeInteger(value: any): boolean;*/
+  static parseFloat(value: string): number;
+  static parseInt(value: string): number;
   toExponential(fractionDigits?: number): string;
   toFixed(fractionDigits?: number): string;
   toPrecision(precision?: number): string;

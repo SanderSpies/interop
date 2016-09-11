@@ -1,0 +1,96 @@
+external _NaN: float = "NaN" [@@bs.val];;
+external _Infinity: float = "Infinity" [@@bs.val];;
+external undefined: unit = "undefined" [@@bs.val];;
+external parseInt: 'a -> ?radix:float -> float = "parseInt" [@@bs.val];;
+external parseFloat: 'a -> float = "parseFloat" [@@bs.val];;
+external isNaN: 'a -> bool = "isNaN" [@@bs.val];;
+external isFinite: 'a -> bool = "isFinite" [@@bs.val];;
+external decodeURI: string -> string = "decodeURI" [@@bs.val];;
+external decodeURIComponent: string -> string = "decodeURIComponent" [@@bs.val];;
+external encodeURI: string -> string = "encodeURI" [@@bs.val];;
+external encodeURIComponent: string -> string = "encodeURIComponent" [@@bs.val];;
+module Console = struct
+  external _assert: 'a -> 'rest array -> unit = "console.assert" [@@bs.val] [@@bs.splice]
+  external clear: unit -> unit = "console.clear" [@@bs.val]
+  external count: string -> unit = "console.count" [@@bs.val]
+  external debug: 'rest array -> unit = "console.debug" [@@bs.val] [@@bs.splice]
+  external dir: 'rest array -> unit = "console.dir" [@@bs.val] [@@bs.splice]
+  external dirxml: 'rest array -> unit = "console.dirxml" [@@bs.val] [@@bs.splice]
+  external error: 'rest array -> unit = "console.error" [@@bs.val] [@@bs.splice]
+  external _exception: 'rest array -> unit = "console.exception" [@@bs.val] [@@bs.splice]
+  external group: 'rest array -> unit = "console.group" [@@bs.val] [@@bs.splice]
+  external groupCollapsed: 'rest array -> unit = "console.groupCollapsed" [@@bs.val] [@@bs.splice]
+  external groupEnd: unit -> unit = "console.groupEnd" [@@bs.val]
+  external info: 'rest array -> unit = "console.info" [@@bs.val] [@@bs.splice]
+  external log: 'rest array -> unit = "console.log" [@@bs.val] [@@bs.splice]
+  external profile: string -> unit = "console.profile" [@@bs.val]
+  external profileEnd: unit -> unit = "console.profileEnd" [@@bs.val]
+  external time: string -> unit = "console.time" [@@bs.val]
+  external timeEnd: string -> unit = "console.timeEnd" [@@bs.val]
+  external timeStamp: ?label:string -> unit = "console.timeStamp" [@@bs.val]
+  external trace: 'rest array -> unit = "console.trace" [@@bs.val] [@@bs.splice]
+  external warn: 'rest array -> unit = "console.warn" [@@bs.val] [@@bs.splice]
+
+end
+
+module Math = struct
+  external _E: float = "Math.E" [@@bs.val]
+  external _LN10: float = "Math.LN10" [@@bs.val]
+  external _LN2: float = "Math.LN2" [@@bs.val]
+  external _LOG10E: float = "Math.LOG10E" [@@bs.val]
+  external _LOG2E: float = "Math.LOG2E" [@@bs.val]
+  external _PI: float = "Math.PI" [@@bs.val]
+  external _SQRT1_2: float = "Math.SQRT1_2" [@@bs.val]
+  external _SQRT2: float = "Math.SQRT2" [@@bs.val]
+  external abs: float -> float = "Math.abs" [@@bs.val]
+  external acos: float -> float = "Math.acos" [@@bs.val]
+  external acosh: float -> float = "Math.acosh" [@@bs.val]
+  external asin: float -> float = "Math.asin" [@@bs.val]
+  external asinh: float -> float = "Math.asinh" [@@bs.val]
+  external atan: float -> float = "Math.atan" [@@bs.val]
+  external atan2: float -> float -> float = "Math.atan2" [@@bs.val]
+  external atanh: float -> float = "Math.atanh" [@@bs.val]
+  external cbrt: float -> float = "Math.cbrt" [@@bs.val]
+  external ceil: float -> float = "Math.ceil" [@@bs.val]
+  external clz32: float -> float = "Math.clz32" [@@bs.val]
+  external cos: float -> float = "Math.cos" [@@bs.val]
+  external cosh: float -> float = "Math.cosh" [@@bs.val]
+  external exp: float -> float = "Math.exp" [@@bs.val]
+  external expm1: float -> float = "Math.expm1" [@@bs.val]
+  external floor: float -> float = "Math.floor" [@@bs.val]
+  external fround: float -> float = "Math.fround" [@@bs.val]
+  external hypot: 'rest array -> float = "Math.hypot" [@@bs.val] [@@bs.splice]
+  external imul: float -> float -> float = "Math.imul" [@@bs.val]
+  external log: float -> float = "Math.log" [@@bs.val]
+  external log10: float -> float = "Math.log10" [@@bs.val]
+  external log1p: float -> float = "Math.log1p" [@@bs.val]
+  external log2: float -> float = "Math.log2" [@@bs.val]
+  external max: 'rest array -> float = "Math.max" [@@bs.val] [@@bs.splice]
+  external min: 'rest array -> float = "Math.min" [@@bs.val] [@@bs.splice]
+  external pow: float -> float -> float = "Math.pow" [@@bs.val]
+  external random: unit -> float = "Math.random" [@@bs.val]
+  external round: float -> float = "Math.round" [@@bs.val]
+  external sign: float -> float = "Math.sign" [@@bs.val]
+  external sin: float -> float = "Math.sin" [@@bs.val]
+  external sinh: float -> float = "Math.sinh" [@@bs.val]
+  external sqrt: float -> float = "Math.sqrt" [@@bs.val]
+  external tan: float -> float = "Math.tan" [@@bs.val]
+  external tanh: float -> float = "Math.tanh" [@@bs.val]
+  external trunc: float -> float = "Math.trunc" [@@bs.val]
+
+end
+
+module Boolean = struct
+  external valueOf: unit -> bool = "Boolean.valueOf" [@@bs.val]
+
+end
+module Number = struct
+  external parseFloat: string -> float = "Number.parseFloat" [@@bs.val]
+  external parseInt: string -> float = "Number.parseInt" [@@bs.val]
+  external toExponential: ?fractionDigits:float -> string = "Number.toExponential" [@@bs.val]
+  external toFixed: ?fractionDigits:float -> string = "Number.toFixed" [@@bs.val]
+  external toPrecision: ?precision:float -> string = "Number.toPrecision" [@@bs.val]
+  external toString: ?radix:float -> string = "Number.toString" [@@bs.val]
+  external valueOf: unit -> float = "Number.valueOf" [@@bs.val]
+
+end
