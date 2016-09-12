@@ -150,6 +150,11 @@ and create_interop statements =>
       create_interop tail
     | [(_, DeclareModule _), ...tail] => create_interop tail
     | [(_, Empty), ...tail] => create_interop tail
+    | [(_, TypeAlias a), ...tail] =>
+
+        print_string "type TODO;";
+        print_newline();
+        create_interop tail
     | [_, ...tail] => create_interop tail
     | [] => ()
     }

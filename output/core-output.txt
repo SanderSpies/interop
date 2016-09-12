@@ -261,6 +261,7 @@ let module String = {
   external raw: string => string = "" [@@bs.val];
   external raw: $Shape => array 'rest => string = "" [@@bs.val] [@@bs.splice];
 };
+type TODO;
 let module RegExp = {
   type t;
   external create:TODO => flags::(option RegExp$flags) => RegExp = "RegExp" [@@bs.new]; 
@@ -379,6 +380,9 @@ let module JSON = {
   external parse: string => reviver::(option 'a => 'a => 'a) => 'a = "" [@@bs.val];
   external stringify: 'a => replacer::(option TODO) => space::(option TODO) => string = "" [@@bs.val];
 };
+type TODO;
+type TODO;
+type TODO;
 let module Map = {
   type t;
   external _@@iterator: t => unit => Iterator = "" [@@bs.send];
@@ -440,6 +444,7 @@ let module ArrayBuffer = {
   external byteLength: t => float = "" [@@bs.send];
   external slice: t => float => end::(option float) => this = "" [@@bs.send];
 };
+type TODO;
 let module $TypedArray = {
   type t;
   external _BYTES_PER_ELEMENT: float = "" [@@bs.val];
@@ -552,6 +557,8 @@ let module Reflect = {
   external set: 'a => 'a => 'a => receiver::(option 'a) => bool = "" [@@bs.val];
   external setPrototypeOf: 'a => 'a => bool = "" [@@bs.val];
 };
+type TODO;
+type TODO;
 let module Proxy = {
   type t;
   external constructor: t => T => Proxy$traps => T = "" [@@bs.send];
