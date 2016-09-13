@@ -19,17 +19,17 @@ let module MediaList = {
   external create: unit => t = "MediaList" [@@bs.new]; 
   external mediaText: string = "" [@@bs.get];
   external length: float = "" [@@bs.get];
-  external item: t => float => TODO = "" [@@bs.send];
-  external deleteMedium: t => string => unit = "" [@@bs.send];
-  external appendMedium: t => string => unit = "" [@@bs.send];
+  external item: t => (float => TODO) = "" [@@bs.send];
+  external deleteMedium: t => (string => unit) = "" [@@bs.send];
+  external appendMedium: t => (string => unit) = "" [@@bs.send];
 };
 let module CSSStyleSheet = {
   type t;
   external create: unit => t = "CSSStyleSheet" [@@bs.new]; 
   external cssRules: CSSRuleList = "" [@@bs.get];
   external ownerRule: TODO = "" [@@bs.get];
-  external deleteRule: t => float => unit = "" [@@bs.send];
-  external insertRule: t => string => float => unit = "" [@@bs.send];
+  external deleteRule: t => (float => unit) = "" [@@bs.send];
+  external insertRule: t => (string => float => unit) = "" [@@bs.send];
 };
 let module CSSRule = {
   type t;
@@ -59,7 +59,7 @@ let module CSSRuleList = {
   type t;
   external create: unit => t = "CSSRuleList" [@@bs.new]; 
   external length: float = "" [@@bs.get];
-  external item: t => float => TODO = "" [@@bs.send];
+  external item: t => (float => TODO) = "" [@@bs.send];
 };
 let module CSSStyleDeclaration = {
   type t;
@@ -344,14 +344,14 @@ let module CSSStyleDeclaration = {
   external zIndex: string = "" [@@bs.get];
   external cssFloat: string = "" [@@bs.get];
   external cssText: string = "" [@@bs.get];
-  external getPropertyPriority: t => string => string = "" [@@bs.send];
-  external getPropertyValue: t => string => string = "" [@@bs.send];
-  external item: t => float => string = "" [@@bs.send];
+  external getPropertyPriority: t => (string => string) = "" [@@bs.send];
+  external getPropertyValue: t => (string => string) = "" [@@bs.send];
+  external item: t => (float => string) = "" [@@bs.send];
   external length: float = "" [@@bs.get];
   external parentRule: CSSRule = "" [@@bs.get];
-  external removeProperty: t => string => string = "" [@@bs.send];
-  external setProperty: t => string => TODO => TODO => unit = "" [@@bs.send];
-  external setPropertyPriority: t => string => string => unit = "" [@@bs.send];
+  external removeProperty: t => (string => string) = "" [@@bs.send];
+  external setProperty: t => (string => TODO => TODO => unit) = "" [@@bs.send];
+  external setPropertyPriority: t => (string => string => unit) = "" [@@bs.send];
 };
 let module TransitionEvent = {
   type t;

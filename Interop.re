@@ -17,7 +17,7 @@ let fixUpperCase str =>
     str
   };
 
-let reservedNames = ["assert", "exception", "type"];
+let reservedNames = ["assert", "exception", "type", "end", "begin", "switch", "if", "else"];
 
 let fixReservedNames str =>
   if (List.exists (fun a => a == str) reservedNames) {
@@ -77,7 +77,7 @@ let rec process_type typeAnnotation =>
           _ /*typeParameters*/
         }
       ) =>
-      process_function params rest ^ process_type returnType
+      "(" ^ process_function params rest ^ process_type returnType ^ ")"
     | _ => "TODO" /* TODO support more! */
     }
   )
