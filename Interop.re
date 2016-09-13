@@ -104,7 +104,23 @@ and process_function params rest => {
     };
   fix ^ params ^ restParam
 }
-and create_interop statements =>
+and findClass statements type_ => {
+  Ast.Statement.(
+    switch statements {
+    | [(_, DeclareClass {Interface.id: id, body, _}), ...tail] => {
+        let (_, {Ast.Identifier.name: name, _}) = id;
+        if (name == type_) {
+          Some body
+        } else {
+          findClass tail type_
+        }
+      }
+    | [hd, ...tail] => findClass tail type_
+    | [] => None
+    }
+  )
+}
+and create_interop statements allStatements =>
   Ast.Statement.(
     switch statements {
     | [(_, DeclareVariable {DeclareVariable.id: id}), ...tail] =>
@@ -118,15 +134,23 @@ and create_interop statements =>
           print_string (process_object name obj);
           print_string "};";
         | _ =>
-          print_string ("external " ^ fixUpperCase name ^ ": ");
+
           let type_ = process_type typeAnnotation;
-          print_string type_;
-          print_string (" = \"" ^ name ^ "\" [@@bs.val];")
+          let foundClass = findClass allStatements type_;
+          switch foundClass {
+            | Some (_, obj) => {
+              print_string ("let module " ^ String.capitalize name ^ "Instance = {");
+              print_newline ();
+              print_string(process_object name obj);
+              print_string "};";
+              }
+            | None => print_string ("external " ^ fixUpperCase name ^ ": " ^ type_ ^ " = \"" ^ name ^ "\" [@@bs.val];")
+          };
         }
       | None => assert false
       };
       print_newline ();
-      create_interop tail
+      create_interop tail  allStatements
     | [(_, DeclareFunction {DeclareFunction.id: id, _}), ...tail] =>
       let (_, {Ast.Identifier.name: name, typeAnnotation, _}) = id;
       switch typeAnnotation {
@@ -138,7 +162,7 @@ and create_interop statements =>
       | None => assert false
       };
       print_newline ();
-      create_interop tail
+      create_interop tail  allStatements
     | [(_, DeclareClass {Interface.id: id, body, _}), ...tail] =>
       let (_, {Ast.Identifier.name: name, _}) = id;
       let (_, obj) = body;
@@ -147,15 +171,14 @@ and create_interop statements =>
       print_string (process_class name obj);
       print_string "};";
       print_newline ();
-      create_interop tail
-    | [(_, DeclareModule _), ...tail] => create_interop tail
-    | [(_, Empty), ...tail] => create_interop tail
+      create_interop tail  allStatements
+    | [(_, DeclareModule _), ...tail] => create_interop tail  allStatements
+    | [(_, Empty), ...tail] => create_interop tail  allStatements
     | [(_, TypeAlias a), ...tail] =>
-
         print_string "type TODO;";
         print_newline();
-        create_interop tail
-    | [_, ...tail] => create_interop tail
+        create_interop tail  allStatements
+    | [_, ...tail] => create_interop tail  allStatements
     | [] => ()
     }
   )
@@ -249,7 +272,7 @@ and process_object moduleName (obj: Ast.Type.Object.t) => {
 let main content => {
   let (ocaml_ast, _) = Parser_flow.program fail::false parse_options::parse_options content;
   let (_, statements, _) = ocaml_ast;
-  create_interop statements
+  create_interop statements statements
 };
 
 let load_file f => {

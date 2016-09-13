@@ -18,7 +18,25 @@ let module Screen = {
   external mozOrientation: t => string = "" [@@bs.send];
   external onmozorientationchange: t => Function = "" [@@bs.send];
 };
-external screen: Screen = "screen" [@@bs.val];
+let module ScreenInstance = {
+  external availHeight: float = "screen.availHeight" [@@bs.val];
+  external availLeft: float = "screen.availLeft" [@@bs.val];
+  external availTop: float = "screen.availTop" [@@bs.val];
+  external availWidth: float = "screen.availWidth" [@@bs.val];
+  external colorDepth: float = "screen.colorDepth" [@@bs.val];
+  external height: float = "screen.height" [@@bs.val];
+  external left: float = "screen.left" [@@bs.val];
+  external mozOrientation: string = "screen.mozOrientation" [@@bs.val];
+  external onmozorientationchange: 'a = "screen.onmozorientationchange" [@@bs.val];
+  external orientation: TODO = "screen.orientation" [@@bs.val];
+  external pixelDepth: float = "screen.pixelDepth" [@@bs.val];
+  external top: float = "screen.top" [@@bs.val];
+  external width: float = "screen.width" [@@bs.val];
+  external mozLockOrientation: Function = "screen.mozLockOrientation" [@@bs.val];
+  external mozUnlockOrientation: Function = "screen.mozUnlockOrientation" [@@bs.val];
+  external mozOrientation: string = "screen.mozOrientation" [@@bs.val];
+  external onmozorientationchange: Function = "screen.onmozorientationchange" [@@bs.val];
+};
 external window: 'a = "window" [@@bs.val];
 type TODO;
 type TODO;
@@ -71,7 +89,43 @@ let module Navigator = {
   external taintEnabled: t => Function = "" [@@bs.send];
   external vibrate: t => TODO => bool = "" [@@bs.send];
 };
-external navigator: Navigator = "navigator" [@@bs.val];
+let module NavigatorInstance = {
+  external appCodeName: TODO = "navigator.appCodeName" [@@bs.val];
+  external buildID: string = "navigator.buildID" [@@bs.val];
+  external cookieEnabled: bool = "navigator.cookieEnabled" [@@bs.val];
+  external doNotTrack: 'a = "navigator.doNotTrack" [@@bs.val];
+  external geolocation: Geolocation = "navigator.geolocation" [@@bs.val];
+  external mediaDevices: Object = "navigator.mediaDevices" [@@bs.val];
+  external javaEnabled: Function = "navigator.javaEnabled" [@@bs.val];
+  external maxTouchPoints: float = "navigator.maxTouchPoints" [@@bs.val];
+  external mimeTypes: MimeTypeArray = "navigator.mimeTypes" [@@bs.val];
+  external oscpu: string = "navigator.oscpu" [@@bs.val];
+  external permissions: 'a = "navigator.permissions" [@@bs.val];
+  external plugins: PluginArray = "navigator.plugins" [@@bs.val];
+  external product: TODO = "navigator.product" [@@bs.val];
+  external productSub: TODO = "navigator.productSub" [@@bs.val];
+  external serviceWorker: Object = "navigator.serviceWorker" [@@bs.val];
+  external vendor: TODO = "navigator.vendor" [@@bs.val];
+  external vendorSub: TODO = "navigator.vendorSub" [@@bs.val];
+  external getBattery: unit => Promise = "navigator.getBattery" [@@bs.val];
+  external getGamepads: unit => TODO = "navigator.getGamepads" [@@bs.val];
+  external webkitGetGamepads: Function = "navigator.webkitGetGamepads" [@@bs.val];
+  external mozGetGamepads: Function = "navigator.mozGetGamepads" [@@bs.val];
+  external mozGamepads: 'a = "navigator.mozGamepads" [@@bs.val];
+  external gamepads: 'a = "navigator.gamepads" [@@bs.val];
+  external webkitGamepads: 'a = "navigator.webkitGamepads" [@@bs.val];
+  external requestMIDIAccess: Function = "navigator.requestMIDIAccess" [@@bs.val];
+  external registerContentHandler: string => string => string => unit = "navigator.registerContentHandler" [@@bs.val];
+  external registerProtocolHandler: string => string => string => unit = "navigator.registerProtocolHandler" [@@bs.val];
+  external requestMediaKeySystemAccess: string => TODO => Promise = "navigator.requestMediaKeySystemAccess" [@@bs.val];
+  external sendBeacon: Function = "navigator.sendBeacon" [@@bs.val];
+  external getUserMedia: Function = "navigator.getUserMedia" [@@bs.val];
+  external webkitGetUserMedia: Function = "navigator.webkitGetUserMedia" [@@bs.val];
+  external mozGetUserMedia: Function = "navigator.mozGetUserMedia" [@@bs.val];
+  external msGetUserMedia: Function = "navigator.msGetUserMedia" [@@bs.val];
+  external taintEnabled: Function = "navigator.taintEnabled" [@@bs.val];
+  external vibrate: TODO => bool = "navigator.vibrate" [@@bs.val];
+};
 let module MimeType = {
   type t;
   external type: t => string = "" [@@bs.send];
@@ -161,7 +215,22 @@ let module Performance = {
   external setResourceTimingBufferSize: t => float => unit = "" [@@bs.send];
   external toJSON: t => unit => string = "" [@@bs.send];
 };
-external performance: Performance = "performance" [@@bs.val];
+let module PerformanceInstance = {
+  external navigation: PerformanceNavigation = "performance.navigation" [@@bs.val];
+  external onresourcetimingbufferfull: Event => 'a = "performance.onresourcetimingbufferfull" [@@bs.val];
+  external timing: PerformanceTiming = "performance.timing" [@@bs.val];
+  external clearMarks: name::(option string) => unit = "performance.clearMarks" [@@bs.val];
+  external clearMeasures: name::(option string) => unit = "performance.clearMeasures" [@@bs.val];
+  external clearResourceTimings: unit => unit = "performance.clearResourceTimings" [@@bs.val];
+  external getEntries: options::(option PerformanceEntryFilterOptions) => Array = "performance.getEntries" [@@bs.val];
+  external getEntriesByName: string => type::(option string) => Array = "performance.getEntriesByName" [@@bs.val];
+  external getEntriesByType: string => Array = "performance.getEntriesByType" [@@bs.val];
+  external mark: string => unit = "performance.mark" [@@bs.val];
+  external measure: string => startMark::(option string) => endMark::(option string) => unit = "performance.measure" [@@bs.val];
+  external now: unit => float = "performance.now" [@@bs.val];
+  external setResourceTimingBufferSize: float => unit = "performance.setResourceTimingBufferSize" [@@bs.val];
+  external toJSON: unit => string = "performance.toJSON" [@@bs.val];
+};
 let module History = {
   type t;
   external length: t => float = "" [@@bs.send];
@@ -173,7 +242,16 @@ let module History = {
   external pushState: t => 'a => string => url::(option string) => unit = "" [@@bs.send];
   external replaceState: t => 'a => string => url::(option string) => unit = "" [@@bs.send];
 };
-external history: History = "history" [@@bs.val];
+let module HistoryInstance = {
+  external length: float = "history.length" [@@bs.val];
+  external scrollRestoration: TODO = "history.scrollRestoration" [@@bs.val];
+  external state: 'a = "history.state" [@@bs.val];
+  external back: unit => unit = "history.back" [@@bs.val];
+  external forward: unit => unit = "history.forward" [@@bs.val];
+  external go: delta::(option 'a) => unit = "history.go" [@@bs.val];
+  external pushState: 'a => string => url::(option string) => unit = "history.pushState" [@@bs.val];
+  external replaceState: 'a => string => url::(option string) => unit = "history.replaceState" [@@bs.val];
+};
 let module Location = {
   type t;
   external ancestorOrigins: t => TODO = "" [@@bs.send];
@@ -191,7 +269,22 @@ let module Location = {
   external replace: t => string => unit = "" [@@bs.send];
   external toString: t => unit => string = "" [@@bs.send];
 };
-external location: Location = "location" [@@bs.val];
+let module LocationInstance = {
+  external ancestorOrigins: TODO = "location.ancestorOrigins" [@@bs.val];
+  external hash: string = "location.hash" [@@bs.val];
+  external host: string = "location.host" [@@bs.val];
+  external hostname: string = "location.hostname" [@@bs.val];
+  external href: string = "location.href" [@@bs.val];
+  external origin: string = "location.origin" [@@bs.val];
+  external pathname: string = "location.pathname" [@@bs.val];
+  external port: string = "location.port" [@@bs.val];
+  external protocol: string = "location.protocol" [@@bs.val];
+  external search: string = "location.search" [@@bs.val];
+  external assign: string => unit = "location.assign" [@@bs.val];
+  external reload: flag::(option bool) => unit = "location.reload" [@@bs.val];
+  external replace: string => unit = "location.replace" [@@bs.val];
+  external toString: unit => string = "location.toString" [@@bs.val];
+};
 let module DOMParser = {
   type t;
   external parseFromString: t => string => string => Document = "" [@@bs.send];
@@ -631,7 +724,37 @@ let module WaveShaperNode = {
   external curve: t => Float32Array = "" [@@bs.send];
   external oversample: t => TODO = "" [@@bs.send];
 };
-external _AudioContext: AudioContext = "AudioContext" [@@bs.val];
+let module AudioContextInstance = {
+  external currentTime: float = "AudioContext.currentTime" [@@bs.val];
+  external destination: AudioDestinationNode = "AudioContext.destination" [@@bs.val];
+  external listener: AudioListener = "AudioContext.listener" [@@bs.val];
+  external sampleRate: float = "AudioContext.sampleRate" [@@bs.val];
+  external state: 'a = "AudioContext.state" [@@bs.val];
+  external onstatechange: 'a => 'a = "AudioContext.onstatechange" [@@bs.val];
+  external close: unit => unit = "AudioContext.close" [@@bs.val];
+  external createBuffer: float => float => float => AudioBuffer = "AudioContext.createBuffer" [@@bs.val];
+  external createBufferSource: myMediaElement::(option HTMLMediaElement) => AudioBufferSourceNode = "AudioContext.createBufferSource" [@@bs.val];
+  external createMediaElementSource: HTMLMediaElement => MediaElementAudioSourceNode = "AudioContext.createMediaElementSource" [@@bs.val];
+  external createMediaStreamSource: unit => MediaStreamAudioSourceNode = "AudioContext.createMediaStreamSource" [@@bs.val];
+  external createMediaStreamDestination: unit => MediaStream = "AudioContext.createMediaStreamDestination" [@@bs.val];
+  external createScriptProcessor: float => float => float => ScriptProcessorNode = "AudioContext.createScriptProcessor" [@@bs.val];
+  external createAnalyser: unit => AnalyserNode = "AudioContext.createAnalyser" [@@bs.val];
+  external createBiquadFilter: unit => BiquadFilterNode = "AudioContext.createBiquadFilter" [@@bs.val];
+  external createChannelMerger: numberOfInputs::(option float) => ChannelMergerNode = "AudioContext.createChannelMerger" [@@bs.val];
+  external createChannelSplitter: numberOfInputs::(option float) => ChannelSplitterNode = "AudioContext.createChannelSplitter" [@@bs.val];
+  external createConvolver: unit => ConvolverNode = "AudioContext.createConvolver" [@@bs.val];
+  external createDelay: maxDelayTime::(option float) => DelayNode = "AudioContext.createDelay" [@@bs.val];
+  external createDynamicCompressor: unit => DynamicsCompressorNode = "AudioContext.createDynamicCompressor" [@@bs.val];
+  external createGain: unit => GainNode = "AudioContext.createGain" [@@bs.val];
+  external createOscillator: unit => OscillatorNode = "AudioContext.createOscillator" [@@bs.val];
+  external createPanner: unit => PannerNode = "AudioContext.createPanner" [@@bs.val];
+  external createPeriodicWave: Float32Array => Float32Array => options::(option TODO) => PeriodicWave = "AudioContext.createPeriodicWave" [@@bs.val];
+  external createWaveShaper: unit => WaveShaperNode = "AudioContext.createWaveShaper" [@@bs.val];
+  external decodeAudioData: ArrayBuffer => Function => Function => unit = "AudioContext.decodeAudioData" [@@bs.val];
+  external decodeAudioData: ArrayBuffer => Promise = "AudioContext.decodeAudioData" [@@bs.val];
+  external resume: unit => Promise = "AudioContext.resume" [@@bs.val];
+  external suspend: unit => Promise = "AudioContext.suspend" [@@bs.val];
+};
 type TODO;
 let module Headers = {
   type t;
