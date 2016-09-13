@@ -3,6 +3,7 @@ type TODO;
 type TODO;
 let module Buffer = {
   type t;
+  external create: unit => t = "Buffer" [@@bs.new]; 
   external constructor: t => TODO => encoding::(option buffer$Encoding) => unit = "" [@@bs.send];
   external length: float = "" [@@bs.get];
   external compare: t => Buffer => float = "" [@@bs.send];
@@ -74,6 +75,7 @@ let module Buffer = {
 type TODO;
 let module Child_process$Error = {
   type t;
+  external create: unit => t = "child_process$Error" [@@bs.new]; 
   external code: float = "" [@@bs.get];
   external signal: TODO = "" [@@bs.get];
 };
@@ -87,6 +89,7 @@ type TODO;
 type TODO;
 let module Child_process$ChildProcess = {
   type t;
+  external create: unit => t = "child_process$ChildProcess" [@@bs.new]; 
   external stdin: stream$Writable = "" [@@bs.get];
   external stdout: stream$Readable = "" [@@bs.get];
   external stderr: stream$Readable = "" [@@bs.get];
@@ -100,6 +103,7 @@ type TODO;
 type TODO;
 let module Crypto$Cipher = {
   type t;
+  external create: unit => t = "crypto$Cipher" [@@bs.new]; 
   external final: t => TODO => string = "" [@@bs.send];
   external final: t => unit => Buffer = "" [@@bs.send];
   external getAuthTag: t => unit => Buffer = "" [@@bs.send];
@@ -115,6 +119,7 @@ type TODO;
 type TODO;
 let module Crypto$Decipher = {
   type t;
+  external create: unit => t = "crypto$Decipher" [@@bs.new]; 
   external final: t => TODO => string = "" [@@bs.send];
   external final: t => unit => Buffer = "" [@@bs.send];
   external getAuthTag: t => unit => Buffer = "" [@@bs.send];
@@ -128,6 +133,7 @@ let module Crypto$Decipher = {
 };
 let module Crypto$Hash = {
   type t;
+  external create: unit => t = "crypto$Hash" [@@bs.new]; 
   external digest: t => TODO => string = "" [@@bs.send];
   external digest: t => unit => Buffer = "" [@@bs.send];
   external update: t => Buffer => input_encoding::(option unit) => crypto$Hash = "" [@@bs.send];
@@ -135,6 +141,7 @@ let module Crypto$Hash = {
 };
 let module Crypto$Hmac = {
   type t;
+  external create: unit => t = "crypto$Hmac" [@@bs.new]; 
   external digest: t => TODO => string = "" [@@bs.send];
   external digest: t => unit => Buffer = "" [@@bs.send];
   external update: t => Buffer => input_encoding::(option unit) => crypto$Hmac = "" [@@bs.send];
@@ -143,6 +150,7 @@ let module Crypto$Hmac = {
 type TODO;
 let module Crypto$Sign = {
   type t;
+  external create: unit => t = "crypto$Sign" [@@bs.new]; 
   external sign: t => crypto$Sign$private_key => TODO => string = "" [@@bs.send];
   external sign: t => crypto$Sign$private_key => unit => Buffer = "" [@@bs.send];
   external update: t => Buffer => input_encoding::(option unit) => crypto$Sign = "" [@@bs.send];
@@ -150,6 +158,7 @@ let module Crypto$Sign = {
 };
 let module Crypto$Verify = {
   type t;
+  external create: unit => t = "crypto$Verify" [@@bs.new]; 
   external update: t => Buffer => input_encoding::(option unit) => crypto$Verify = "" [@@bs.send];
   external update: t => string => input_encoding::(option TODO) => crypto$Verify = "" [@@bs.send];
   external verify: t => string => string => TODO => bool = "" [@@bs.send];
@@ -159,6 +168,7 @@ type TODO;
 type TODO;
 let module Events$EventEmitter = {
   type t;
+  external create: unit => t = "events$EventEmitter" [@@bs.new]; 
   external listenerCount: events$EventEmitter => string => float = "" [@@bs.val];
   external addListener: t => string => (unit => unit) => events$EventEmitter = "" [@@bs.send];
   external emit: t => string => array 'rest => bool = "" [@@bs.send] [@@bs.splice];
@@ -173,6 +183,7 @@ let module Events$EventEmitter = {
 };
 let module Domain$Domain = {
   type t;
+  external create: unit => t = "domain$Domain" [@@bs.new]; 
   external members: Array = "" [@@bs.get];
   external add: t => events$EventEmitter => unit = "" [@@bs.send];
   external bind: t => (unit => unit) => (unit => unit) = "" [@@bs.send];
@@ -185,6 +196,7 @@ let module Domain$Domain = {
 };
 let module Http$IncomingMessage = {
   type t;
+  external create: unit => t = "http$IncomingMessage" [@@bs.new]; 
   external headers: Object = "" [@@bs.get];
   external httpVersion: string = "" [@@bs.get];
   external method: string = "" [@@bs.get];
@@ -196,6 +208,7 @@ let module Http$IncomingMessage = {
 };
 let module Http$ClientRequest = {
   type t;
+  external create: unit => t = "http$ClientRequest" [@@bs.new]; 
   external flushHeaders: t => unit => unit = "" [@@bs.send];
   external abort: t => unit => unit = "" [@@bs.send];
   external setTimeout: t => float => callback::(option (unit => unit)) => unit = "" [@@bs.send];
@@ -204,6 +217,7 @@ let module Http$ClientRequest = {
 };
 let module Http$ServerResponse = {
   type t;
+  external create: unit => t = "http$ServerResponse" [@@bs.new]; 
   external addTrailers: t => TODO => unit = "" [@@bs.send];
   external finished: bool = "" [@@bs.get];
   external getHeader: t => string => unit = "" [@@bs.send];
@@ -220,6 +234,7 @@ let module Http$ServerResponse = {
 };
 let module Net$Socket = {
   type t;
+  external create: unit => t = "net$Socket" [@@bs.new]; 
   external constructor: t => options::(option Object) => unit = "" [@@bs.send];
   external address: t => unit => net$Socket$address = "" [@@bs.send];
   external bufferSize: float = "" [@@bs.get];
@@ -245,6 +260,7 @@ let module Net$Socket = {
 };
 let module Net$Server = {
   type t;
+  external create: unit => t = "net$Server" [@@bs.new]; 
   external listen: t => float => hostname::(option string) => backlog::(option float) => callback::(option (unit => unit)) => net$Server = "" [@@bs.send];
   external listen: t => string => callback::(option (unit => unit)) => net$Server = "" [@@bs.send];
   external listen: t => Object => callback::(option (unit => unit)) => net$Server = "" [@@bs.send];
@@ -261,6 +277,7 @@ type TODO;
 type TODO;
 let module Readline$Interface = {
   type t;
+  external create: unit => t = "readline$Interface" [@@bs.new]; 
   external close: t => unit => unit = "" [@@bs.send];
   external pause: t => unit => unit = "" [@@bs.send];
   external prompt: t => preserveCursor::(option bool) => unit = "" [@@bs.send];
@@ -271,10 +288,12 @@ let module Readline$Interface = {
 };
 let module Stream$Stream = {
   type t;
+  external create: unit => t = "stream$Stream" [@@bs.new]; 
 };
 type TODO;
 let module Stream$Readable = {
   type t;
+  external create: unit => t = "stream$Readable" [@@bs.new]; 
   external constructor: t => options::(option readableStreamOptions) => unit = "" [@@bs.send];
   external setEncoding: t => string => stream$Readable = "" [@@bs.send];
   external isPaused: t => unit => bool = "" [@@bs.send];
@@ -291,6 +310,7 @@ let module Stream$Readable = {
 type TODO;
 let module Stream$Writable = {
   type t;
+  external create: unit => t = "stream$Writable" [@@bs.new]; 
   external constructor: t => options::(option writableStreamOptions) => unit = "" [@@bs.send];
   external cork: t => unit => unit = "" [@@bs.send];
   external end: t => chunkOrEncodingOrCallback::(option TODO) => encodingOrCallback::(option TODO) => callback::(option (unit => unit)) => unit = "" [@@bs.send];
@@ -302,6 +322,7 @@ let module Stream$Writable = {
 type TODO;
 let module Stream$Duplex = {
   type t;
+  external create: unit => t = "stream$Duplex" [@@bs.new]; 
   external constructor: t => options::(option duplexStreamOptions) => unit = "" [@@bs.send];
   external cork: t => unit => unit = "" [@@bs.send];
   external end: t => chunkOrEncodingOrCallback::(option TODO) => encodingOrCallback::(option TODO) => callback::(option (unit => unit)) => unit = "" [@@bs.send];
@@ -312,32 +333,38 @@ let module Stream$Duplex = {
 };
 let module Stream$Transform = {
   type t;
+  external create: unit => t = "stream$Transform" [@@bs.new]; 
   external __transform: t => TODO => string => TODO => data::(option TODO) => unit => unit = "" [@@bs.send];
   external __flush: t => TODO => unit => unit = "" [@@bs.send];
 };
 let module Stream$PassThrough = {
   type t;
+  external create: unit => t = "stream$PassThrough" [@@bs.new]; 
 };
 let module Tty$ReadStream = {
   type t;
+  external create: unit => t = "tty$ReadStream" [@@bs.new]; 
   external isRaw: bool = "" [@@bs.get];
   external setRawMode: t => bool => unit = "" [@@bs.send];
   let isTTY = true;
 };
 let module Tty$WriteStream = {
   type t;
+  external create: unit => t = "tty$WriteStream" [@@bs.new]; 
   external columns: float = "" [@@bs.get];
   external rows: float = "" [@@bs.get];
   let isTTY = true;
 };
 let module String_decoder$StringDecoder = {
   type t;
+  external create: unit => t = "string_decoder$StringDecoder" [@@bs.new]; 
   external constructor: t => encoding::(option TODO) => unit = "" [@@bs.send];
   external end: t => unit => unit = "" [@@bs.send];
   external write: t => Buffer => string = "" [@@bs.send];
 };
 let module Tls$TLSSocket = {
   type t;
+  external create: unit => t = "tls$TLSSocket" [@@bs.new]; 
   external constructor: t => net$Socket => options::(option Object) => unit = "" [@@bs.send];
   external authorized: bool = "" [@@bs.get];
   external authorizationError: TODO = "" [@@bs.get];
@@ -352,6 +379,7 @@ let module Tls$TLSSocket = {
 };
 let module Tls$Server = {
   type t;
+  external create: unit => t = "tls$Server" [@@bs.new]; 
   external listen: t => float => hostname::(option string) => backlog::(option float) => callback::(option (unit => unit)) => tls$Server = "" [@@bs.send];
   external listen: t => string => callback::(option (unit => unit)) => tls$Server = "" [@@bs.send];
   external listen: t => Object => callback::(option (unit => unit)) => tls$Server = "" [@@bs.send];
@@ -363,6 +391,7 @@ let module Tls$Server = {
 type TODO;
 let module Vm$Script = {
   type t;
+  external create: unit => t = "vm$Script" [@@bs.new]; 
   external constructor: t => string => Object => unit = "" [@@bs.send];
   external cachedData: TODO = "" [@@bs.get];
   external cachedDataRejected: TODO = "" [@@bs.get];
@@ -373,12 +402,14 @@ let module Vm$Script = {
 };
 let module Vm$Context = {
   type t;
+  external create: unit => t = "vm$Context" [@@bs.new]; 
 };
 type TODO;
 type TODO;
 type TODO;
 let module Process = {
   type t;
+  external create: unit => t = "Process" [@@bs.new]; 
   external abort: t => unit => unit = "" [@@bs.send];
   external arch: string = "" [@@bs.get];
   external argv: Array = "" [@@bs.get];
@@ -422,30 +453,30 @@ let module Process = {
   external versions: TODO = "" [@@bs.get];
 };
 let module ProcessInstance = {
-  external abort: unit => unit = "process.abort" [@@bs.val];
+  external abort: unit => unit = "process.abort" [@@bs.send];
   external arch: string = "process.arch" [@@bs.val];
   external argv: Array = "process.argv" [@@bs.val];
-  external chdir: string => unit = "process.chdir" [@@bs.val];
+  external chdir: string => unit = "process.chdir" [@@bs.send];
   external config: Object = "process.config" [@@bs.val];
   external connected: bool = "process.connected" [@@bs.val];
-  external cwd: unit => string = "process.cwd" [@@bs.val];
+  external cwd: unit => string = "process.cwd" [@@bs.send];
   external disconnect: unit => unit = "process.disconnect" [@@bs.val];
   external env: TODO = "process.env" [@@bs.val];
   external execArgv: Array = "process.execArgv" [@@bs.val];
   external execPath: string = "process.execPath" [@@bs.val];
-  external exit: code::(option float) => unit = "process.exit" [@@bs.val];
+  external exit: code::(option float) => unit = "process.exit" [@@bs.send];
   external exitCode: float = "process.exitCode" [@@bs.val];
   external getegid: unit => float = "process.getegid" [@@bs.val];
   external geteuid: unit => float = "process.geteuid" [@@bs.val];
   external getgid: unit => float = "process.getgid" [@@bs.val];
   external getgroups: unit => Array = "process.getgroups" [@@bs.val];
   external getuid: unit => float = "process.getuid" [@@bs.val];
-  external hrtime: unit => TODO = "process.hrtime" [@@bs.val];
+  external hrtime: unit => TODO = "process.hrtime" [@@bs.send];
   external initgroups: TODO => TODO => unit = "process.initgroups" [@@bs.val];
-  external kill: float => signal::(option TODO) => unit = "process.kill" [@@bs.val];
+  external kill: float => signal::(option TODO) => unit = "process.kill" [@@bs.send];
   external mainModule: Object = "process.mainModule" [@@bs.val];
-  external memoryUsage: unit => TODO = "process.memoryUsage" [@@bs.val];
-  external nextTick: (unit => unit) => unit = "process.nextTick" [@@bs.val];
+  external memoryUsage: unit => TODO = "process.memoryUsage" [@@bs.send];
+  external nextTick: (unit => unit) => unit = "process.nextTick" [@@bs.send];
   external pid: float = "process.pid" [@@bs.val];
   external platform: string = "process.platform" [@@bs.val];
   external release: TODO = "process.release" [@@bs.val];
@@ -459,8 +490,8 @@ let module ProcessInstance = {
   external stdin: TODO = "process.stdin" [@@bs.val];
   external stdout: TODO = "process.stdout" [@@bs.val];
   external title: string = "process.title" [@@bs.val];
-  external umask: float => float = "process.umask" [@@bs.val];
-  external uptime: unit => float = "process.uptime" [@@bs.val];
+  external umask: float => float = "process.umask" [@@bs.send];
+  external uptime: unit => float = "process.uptime" [@@bs.send];
   external version: string = "process.version" [@@bs.val];
   external versions: TODO = "process.versions" [@@bs.val];
 };

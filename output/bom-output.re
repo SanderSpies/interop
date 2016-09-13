@@ -1,5 +1,6 @@
 let module Screen = {
   type t;
+  external create: unit => t = "Screen" [@@bs.new]; 
   external availHeight: float = "" [@@bs.get];
   external availLeft: float = "" [@@bs.get];
   external availTop: float = "" [@@bs.get];
@@ -42,6 +43,7 @@ type TODO;
 type TODO;
 let module NavigatorCommon = {
   type t;
+  external create: unit => t = "NavigatorCommon" [@@bs.new]; 
   let appName = "Netscape";
   external appVersion: string = "" [@@bs.get];
   external platform: string = "" [@@bs.get];
@@ -53,6 +55,7 @@ let module NavigatorCommon = {
 };
 let module Navigator = {
   type t;
+  external create: unit => t = "Navigator" [@@bs.new]; 
   let appCodeName = "Mozilla";
   external buildID: string = "" [@@bs.get];
   external cookieEnabled: bool = "" [@@bs.get];
@@ -115,8 +118,8 @@ let module NavigatorInstance = {
   external gamepads: 'a = "navigator.gamepads" [@@bs.val];
   external webkitGamepads: 'a = "navigator.webkitGamepads" [@@bs.val];
   external requestMIDIAccess: (unit => unit) = "navigator.requestMIDIAccess" [@@bs.val];
-  external registerContentHandler: string => string => string => unit = "navigator.registerContentHandler" [@@bs.val];
-  external registerProtocolHandler: string => string => string => unit = "navigator.registerProtocolHandler" [@@bs.val];
+  external registerContentHandler: string => string => string => unit = "navigator.registerContentHandler" [@@bs.send];
+  external registerProtocolHandler: string => string => string => unit = "navigator.registerProtocolHandler" [@@bs.send];
   external requestMediaKeySystemAccess: string => TODO => Promise = "navigator.requestMediaKeySystemAccess" [@@bs.val];
   external sendBeacon: (unit => unit) = "navigator.sendBeacon" [@@bs.val];
   external getUserMedia: (unit => unit) = "navigator.getUserMedia" [@@bs.val];
@@ -128,6 +131,7 @@ let module NavigatorInstance = {
 };
 let module MimeType = {
   type t;
+  external create: unit => t = "MimeType" [@@bs.new]; 
   external _type: string = "" [@@bs.get];
   external description: string = "" [@@bs.get];
   external suffixes: string = "" [@@bs.get];
@@ -135,12 +139,14 @@ let module MimeType = {
 };
 let module MimeTypeArray = {
   type t;
+  external create: unit => t = "MimeTypeArray" [@@bs.new]; 
   external length: float = "" [@@bs.get];
   external item: t => float => MimeType = "" [@@bs.send];
   external namedItem: t => string => MimeType = "" [@@bs.send];
 };
 let module Plugin = {
   type t;
+  external create: unit => t = "Plugin" [@@bs.new]; 
   external description: string = "" [@@bs.get];
   external filename: string = "" [@@bs.get];
   external name: string = "" [@@bs.get];
@@ -151,6 +157,7 @@ let module Plugin = {
 };
 let module PluginArray = {
   type t;
+  external create: unit => t = "PluginArray" [@@bs.new]; 
   external length: float = "" [@@bs.get];
   external item: t => float => Plugin = "" [@@bs.send];
   external namedItem: t => string => Plugin = "" [@@bs.send];
@@ -158,6 +165,7 @@ let module PluginArray = {
 };
 let module PerformanceTiming = {
   type t;
+  external create: unit => t = "PerformanceTiming" [@@bs.new]; 
   external connectEnd: float = "" [@@bs.get];
   external connectStart: float = "" [@@bs.get];
   external domainLookupEnd: float = "" [@@bs.get];
@@ -182,6 +190,7 @@ let module PerformanceTiming = {
 };
 let module PerformanceNavigation = {
   type t;
+  external create: unit => t = "PerformanceNavigation" [@@bs.new]; 
   let _TYPE_NAVIGATE = 0.;
   let _TYPE_RELOAD = 1.;
   let _TYPE_BACK_FORWARD = 2.;
@@ -192,6 +201,7 @@ let module PerformanceNavigation = {
 type TODO;
 let module PerformanceEntry = {
   type t;
+  external create: unit => t = "PerformanceEntry" [@@bs.new]; 
   external name: string = "" [@@bs.get];
   external entryType: string = "" [@@bs.get];
   external startTime: float = "" [@@bs.get];
@@ -200,6 +210,7 @@ let module PerformanceEntry = {
 };
 let module Performance = {
   type t;
+  external create: unit => t = "Performance" [@@bs.new]; 
   external navigation: PerformanceNavigation = "" [@@bs.get];
   external onresourcetimingbufferfull: Event => 'a = "" [@@bs.get];
   external timing: PerformanceTiming = "" [@@bs.get];
@@ -219,20 +230,21 @@ let module PerformanceInstance = {
   external navigation: PerformanceNavigation = "performance.navigation" [@@bs.val];
   external onresourcetimingbufferfull: Event => 'a = "performance.onresourcetimingbufferfull" [@@bs.val];
   external timing: PerformanceTiming = "performance.timing" [@@bs.val];
-  external clearMarks: name::(option string) => unit = "performance.clearMarks" [@@bs.val];
-  external clearMeasures: name::(option string) => unit = "performance.clearMeasures" [@@bs.val];
-  external clearResourceTimings: unit => unit = "performance.clearResourceTimings" [@@bs.val];
-  external getEntries: options::(option PerformanceEntryFilterOptions) => Array = "performance.getEntries" [@@bs.val];
-  external getEntriesByName: string => type::(option string) => Array = "performance.getEntriesByName" [@@bs.val];
-  external getEntriesByType: string => Array = "performance.getEntriesByType" [@@bs.val];
-  external mark: string => unit = "performance.mark" [@@bs.val];
-  external measure: string => startMark::(option string) => endMark::(option string) => unit = "performance.measure" [@@bs.val];
-  external now: unit => float = "performance.now" [@@bs.val];
-  external setResourceTimingBufferSize: float => unit = "performance.setResourceTimingBufferSize" [@@bs.val];
-  external toJSON: unit => string = "performance.toJSON" [@@bs.val];
+  external clearMarks: name::(option string) => unit = "performance.clearMarks" [@@bs.send];
+  external clearMeasures: name::(option string) => unit = "performance.clearMeasures" [@@bs.send];
+  external clearResourceTimings: unit => unit = "performance.clearResourceTimings" [@@bs.send];
+  external getEntries: options::(option PerformanceEntryFilterOptions) => Array = "performance.getEntries" [@@bs.send];
+  external getEntriesByName: string => type::(option string) => Array = "performance.getEntriesByName" [@@bs.send];
+  external getEntriesByType: string => Array = "performance.getEntriesByType" [@@bs.send];
+  external mark: string => unit = "performance.mark" [@@bs.send];
+  external measure: string => startMark::(option string) => endMark::(option string) => unit = "performance.measure" [@@bs.send];
+  external now: unit => float = "performance.now" [@@bs.send];
+  external setResourceTimingBufferSize: float => unit = "performance.setResourceTimingBufferSize" [@@bs.send];
+  external toJSON: unit => string = "performance.toJSON" [@@bs.send];
 };
 let module History = {
   type t;
+  external create: unit => t = "History" [@@bs.new]; 
   external length: float = "" [@@bs.get];
   external scrollRestoration: TODO = "" [@@bs.get];
   external state: 'a = "" [@@bs.get];
@@ -246,14 +258,15 @@ let module HistoryInstance = {
   external length: float = "history.length" [@@bs.val];
   external scrollRestoration: TODO = "history.scrollRestoration" [@@bs.val];
   external state: 'a = "history.state" [@@bs.val];
-  external back: unit => unit = "history.back" [@@bs.val];
-  external forward: unit => unit = "history.forward" [@@bs.val];
-  external go: delta::(option 'a) => unit = "history.go" [@@bs.val];
-  external pushState: 'a => string => url::(option string) => unit = "history.pushState" [@@bs.val];
-  external replaceState: 'a => string => url::(option string) => unit = "history.replaceState" [@@bs.val];
+  external back: unit => unit = "history.back" [@@bs.send];
+  external forward: unit => unit = "history.forward" [@@bs.send];
+  external go: delta::(option 'a) => unit = "history.go" [@@bs.send];
+  external pushState: 'a => string => url::(option string) => unit = "history.pushState" [@@bs.send];
+  external replaceState: 'a => string => url::(option string) => unit = "history.replaceState" [@@bs.send];
 };
 let module Location = {
   type t;
+  external create: unit => t = "Location" [@@bs.new]; 
   external ancestorOrigins: TODO = "" [@@bs.get];
   external hash: string = "" [@@bs.get];
   external host: string = "" [@@bs.get];
@@ -280,21 +293,24 @@ let module LocationInstance = {
   external port: string = "location.port" [@@bs.val];
   external protocol: string = "location.protocol" [@@bs.val];
   external search: string = "location.search" [@@bs.val];
-  external assign: string => unit = "location.assign" [@@bs.val];
-  external reload: flag::(option bool) => unit = "location.reload" [@@bs.val];
-  external replace: string => unit = "location.replace" [@@bs.val];
-  external toString: unit => string = "location.toString" [@@bs.val];
+  external assign: string => unit = "location.assign" [@@bs.send];
+  external reload: flag::(option bool) => unit = "location.reload" [@@bs.send];
+  external replace: string => unit = "location.replace" [@@bs.send];
+  external toString: unit => string = "location.toString" [@@bs.send];
 };
 let module DOMParser = {
   type t;
+  external create: unit => t = "DOMParser" [@@bs.new]; 
   external parseFromString: t => string => string => Document = "" [@@bs.send];
 };
 let module FormData = {
   type t;
+  external create: unit => t = "FormData" [@@bs.new]; 
   external append: t => 'a => 'a => blobName::(option string) => unit = "" [@@bs.send];
 };
 let module MutationRecord = {
   type t;
+  external create: unit => t = "MutationRecord" [@@bs.new]; 
   external _type: TODO = "" [@@bs.get];
   external target: Node = "" [@@bs.get];
   external addedNodes: NodeList = "" [@@bs.get];
@@ -307,13 +323,14 @@ let module MutationRecord = {
 };
 let module MutationObserver = {
   type t;
+  external create: unit => t = "MutationObserver" [@@bs.new]; 
   external constructor: t => Array => MutationObserver => 'a => unit = "" [@@bs.send];
   external observe: t => Node => TODO => unit = "" [@@bs.send];
   external takeRecords: t => unit => Array = "" [@@bs.send];
   external disconnect: t => unit => unit = "" [@@bs.send];
 };
 let module NodeFilter = {
-  external acceptNode: Node => float = "NodeFilter.acceptNode" [@@bs.val];
+  external acceptNode: Node => float = "NodeFilter.acceptNode" [@@bs.send];
   external _SHOW_ENTITY_REFERENCE: float = "NodeFilter.SHOW_ENTITY_REFERENCE" [@@bs.val];
   external _SHOW_NOTATION: float = "NodeFilter.SHOW_NOTATION" [@@bs.val];
   external _SHOW_ENTITY: float = "NodeFilter.SHOW_ENTITY" [@@bs.val];
@@ -333,12 +350,14 @@ let module NodeFilter = {
 };
 let module CloseEvent = {
   type t;
+  external create: unit => t = "CloseEvent" [@@bs.new]; 
   external code: float = "" [@@bs.get];
   external reason: string = "" [@@bs.get];
   external wasClean: bool = "" [@@bs.get];
 };
 let module WebSocket = {
   type t;
+  external create: unit => t = "WebSocket" [@@bs.new]; 
   let _CONNECTING = 0.;
   let _OPEN = 1.;
   let _CLOSING = 2.;
@@ -363,6 +382,7 @@ let module WebSocket = {
 };
 let module Worker = {
   type t;
+  external create: unit => t = "Worker" [@@bs.new]; 
   external constructor: t => string => unit = "" [@@bs.send];
   external onerror: Event => 'a = "" [@@bs.get];
   external onmessage: MessageEvent => 'a = "" [@@bs.get];
@@ -371,6 +391,7 @@ let module Worker = {
 };
 let module SharedWorker = {
   type t;
+  external create: unit => t = "SharedWorker" [@@bs.new]; 
   external constructor: t => string => unit = "" [@@bs.send];
   external port: MessagePort = "" [@@bs.get];
   external onerror: Event => 'a = "" [@@bs.get];
@@ -378,6 +399,7 @@ let module SharedWorker = {
 external importScripts: array 'rest => unit = "importScripts" [@@bs.val];
 let module WorkerGlobalScope = {
   type t;
+  external create: unit => t = "WorkerGlobalScope" [@@bs.new]; 
   external self: WorkerGlobalScope = "" [@@bs.get];
   external location: WorkerLocation = "" [@@bs.get];
   external navigator: WorkerNavigator = "" [@@bs.get];
@@ -392,16 +414,19 @@ let module WorkerGlobalScope = {
 };
 let module DedicatedWorkerGlobalScope = {
   type t;
+  external create: unit => t = "DedicatedWorkerGlobalScope" [@@bs.new]; 
   external onmessage: t => unit => MessageEvent => 'a = "" [@@bs.send];
   external postMessage: t => 'a => transfer::(option Iterable) => unit = "" [@@bs.send];
 };
 let module SharedWorkerGlobalScope = {
   type t;
+  external create: unit => t = "SharedWorkerGlobalScope" [@@bs.new]; 
   external name: string = "" [@@bs.get];
   external onconnect: MessageEvent => 'a = "" [@@bs.get];
 };
 let module WorkerLocation = {
   type t;
+  external create: unit => t = "WorkerLocation" [@@bs.new]; 
   external origin: string = "" [@@bs.get];
   external protocol: string = "" [@@bs.get];
   external host: string = "" [@@bs.get];
@@ -413,9 +438,11 @@ let module WorkerLocation = {
 };
 let module WorkerNavigator = {
   type t;
+  external create: unit => t = "WorkerNavigator" [@@bs.new]; 
 };
 let module XDomainRequest = {
   type t;
+  external create: unit => t = "XDomainRequest" [@@bs.new]; 
   external timeout: float = "" [@@bs.get];
   external onerror: Event => 'a = "" [@@bs.get];
   external onload: Event => 'a = "" [@@bs.get];
@@ -431,6 +458,7 @@ let module XDomainRequest = {
 };
 let module XMLHttpRequest = {
   type t;
+  external create: unit => t = "XMLHttpRequest" [@@bs.new]; 
   external responseBody: 'a = "" [@@bs.get];
   external status: float = "" [@@bs.get];
   external readyState: float = "" [@@bs.get];
@@ -468,6 +496,7 @@ let module XMLHttpRequest = {
 };
 let module XMLHttpRequestEventTarget = {
   type t;
+  external create: unit => t = "XMLHttpRequestEventTarget" [@@bs.new]; 
   external onprogress: ProgressEvent => 'a = "" [@@bs.get];
   external onerror: Event => 'a = "" [@@bs.get];
   external onload: Event => 'a = "" [@@bs.get];
@@ -478,21 +507,25 @@ let module XMLHttpRequestEventTarget = {
 };
 let module XMLSerializer = {
   type t;
+  external create: unit => t = "XMLSerializer" [@@bs.new]; 
   external serializeToString: t => Node => string = "" [@@bs.send];
 };
 let module Geolocation = {
   type t;
+  external create: unit => t = "Geolocation" [@@bs.new]; 
   external getCurrentPosition: Position => 'a => error::(option PositionError => 'a) => options::(option PositionOptions) => 'a = "" [@@bs.get];
   external watchPosition: Position => 'a => error::(option PositionError => 'a) => options::(option PositionOptions) => 'a = "" [@@bs.get];
   external clearWatch: 'a = "" [@@bs.get];
 };
 let module Position = {
   type t;
+  external create: unit => t = "Position" [@@bs.new]; 
   external coords: Coordinates = "" [@@bs.get];
   external timestamp: float = "" [@@bs.get];
 };
 let module Coordinates = {
   type t;
+  external create: unit => t = "Coordinates" [@@bs.new]; 
   external latitude: float = "" [@@bs.get];
   external longitude: float = "" [@@bs.get];
   external altitude: float = "" [@@bs.get];
@@ -502,6 +535,7 @@ let module Coordinates = {
 };
 let module PositionError = {
   type t;
+  external create: unit => t = "PositionError" [@@bs.new]; 
   external code: float = "" [@@bs.get];
   external message: string = "" [@@bs.get];
   external _PERMISSION_DENIED: float = "" [@@bs.get];
@@ -511,6 +545,7 @@ let module PositionError = {
 type TODO;
 let module AudioContext = {
   type t;
+  external create: unit => t = "AudioContext" [@@bs.new]; 
   external currentTime: float = "" [@@bs.get];
   external destination: AudioDestinationNode = "" [@@bs.get];
   external listener: AudioListener = "" [@@bs.get];
@@ -543,6 +578,7 @@ let module AudioContext = {
 };
 let module AudioNode = {
   type t;
+  external create: unit => t = "AudioNode" [@@bs.new]; 
   external context: AudioContext = "" [@@bs.get];
   external numberOfInputs: float = "" [@@bs.get];
   external numberOfOutputs: float = "" [@@bs.get];
@@ -555,6 +591,7 @@ let module AudioNode = {
 };
 let module AudioParam = {
   type t;
+  external create: unit => t = "AudioParam" [@@bs.new]; 
   external value: float = "" [@@bs.get];
   external defaultValue: float = "" [@@bs.get];
   external setValueAtTime: t => float => float => this = "" [@@bs.send];
@@ -566,14 +603,17 @@ let module AudioParam = {
 };
 let module AudioDestinationNode = {
   type t;
+  external create: unit => t = "AudioDestinationNode" [@@bs.new]; 
   external maxChannelCount: float = "" [@@bs.get];
 };
 let module AudioListener = {
   type t;
+  external create: unit => t = "AudioListener" [@@bs.new]; 
   external setOrientation: t => float => float => float => float => float => float => unit = "" [@@bs.send];
 };
 let module AudioBuffer = {
   type t;
+  external create: unit => t = "AudioBuffer" [@@bs.new]; 
   external sampleRate: float = "" [@@bs.get];
   external length: float = "" [@@bs.get];
   external duration: float = "" [@@bs.get];
@@ -584,6 +624,7 @@ let module AudioBuffer = {
 };
 let module AudioBufferSourceNode = {
   type t;
+  external create: unit => t = "AudioBufferSourceNode" [@@bs.new]; 
   external buffer: AudioBuffer = "" [@@bs.get];
   external detune: AudioParam = "" [@@bs.get];
   external loop: bool = "" [@@bs.get];
@@ -596,6 +637,7 @@ let module AudioBufferSourceNode = {
 };
 let module MediaStream = {
   type t;
+  external create: unit => t = "MediaStream" [@@bs.new]; 
   external active: bool = "" [@@bs.get];
   external ended: bool = "" [@@bs.get];
   external id: string = "" [@@bs.get];
@@ -614,6 +656,7 @@ let module MediaStream = {
 };
 let module MediaStreamTrack = {
   type t;
+  external create: unit => t = "MediaStreamTrack" [@@bs.new]; 
   external enabled: bool = "" [@@bs.get];
   external id: string = "" [@@bs.get];
   external kind: string = "" [@@bs.get];
@@ -636,17 +679,21 @@ let module MediaStreamTrack = {
 };
 let module MediaElementAudioSourceNode = {
   type t;
+  external create: unit => t = "MediaElementAudioSourceNode" [@@bs.new]; 
 };
 let module MediaStreamAudioSourceNode = {
   type t;
+  external create: unit => t = "MediaStreamAudioSourceNode" [@@bs.new]; 
 };
 let module ScriptProcessorNode = {
   type t;
+  external create: unit => t = "ScriptProcessorNode" [@@bs.new]; 
   external bufferSize: float = "" [@@bs.get];
   external onaudioprocess: 'a => 'a = "" [@@bs.get];
 };
 let module AnalyserNode = {
   type t;
+  external create: unit => t = "AnalyserNode" [@@bs.new]; 
   external fftSize: float = "" [@@bs.get];
   external frequencyBinCount: float = "" [@@bs.get];
   external minDecibels: float = "" [@@bs.get];
@@ -659,6 +706,7 @@ let module AnalyserNode = {
 };
 let module BiquadFilterNode = {
   type t;
+  external create: unit => t = "BiquadFilterNode" [@@bs.new]; 
   external frequency: AudioParam = "" [@@bs.get];
   external detune: AudioParam = "" [@@bs.get];
   external _Q: AudioParam = "" [@@bs.get];
@@ -668,21 +716,26 @@ let module BiquadFilterNode = {
 };
 let module ChannelMergerNode = {
   type t;
+  external create: unit => t = "ChannelMergerNode" [@@bs.new]; 
 };
 let module ChannelSplitterNode = {
   type t;
+  external create: unit => t = "ChannelSplitterNode" [@@bs.new]; 
 };
 let module ConvolverNode = {
   type t;
+  external create: unit => t = "ConvolverNode" [@@bs.new]; 
   external buffer: AudioBuffer = "" [@@bs.get];
   external normalize: bool = "" [@@bs.get];
 };
 let module DelayNode = {
   type t;
+  external create: unit => t = "DelayNode" [@@bs.new]; 
   external delayTime: float = "" [@@bs.get];
 };
 let module DynamicsCompressorNode = {
   type t;
+  external create: unit => t = "DynamicsCompressorNode" [@@bs.new]; 
   external threshold: AudioParam = "" [@@bs.get];
   external knee: AudioParam = "" [@@bs.get];
   external ratio: AudioParam = "" [@@bs.get];
@@ -692,10 +745,12 @@ let module DynamicsCompressorNode = {
 };
 let module GainNode = {
   type t;
+  external create: unit => t = "GainNode" [@@bs.new]; 
   external gain: AudioParam = "" [@@bs.get];
 };
 let module OscillatorNode = {
   type t;
+  external create: unit => t = "OscillatorNode" [@@bs.new]; 
   external frequency: AudioParam = "" [@@bs.get];
   external detune: AudioParam = "" [@@bs.get];
   external _type: TODO = "" [@@bs.get];
@@ -705,6 +760,7 @@ let module OscillatorNode = {
 };
 let module PannerNode = {
   type t;
+  external create: unit => t = "PannerNode" [@@bs.new]; 
   external panningModel: TODO = "" [@@bs.get];
   external distanceModel: TODO = "" [@@bs.get];
   external refDistance: float = "" [@@bs.get];
@@ -718,9 +774,11 @@ let module PannerNode = {
 };
 let module PeriodicWave = {
   type t;
+  external create: unit => t = "PeriodicWave" [@@bs.new]; 
 };
 let module WaveShaperNode = {
   type t;
+  external create: unit => t = "WaveShaperNode" [@@bs.new]; 
   external curve: Float32Array = "" [@@bs.get];
   external oversample: TODO = "" [@@bs.get];
 };
@@ -731,33 +789,34 @@ let module AudioContextInstance = {
   external sampleRate: float = "AudioContext.sampleRate" [@@bs.val];
   external state: 'a = "AudioContext.state" [@@bs.val];
   external onstatechange: 'a => 'a = "AudioContext.onstatechange" [@@bs.val];
-  external close: unit => unit = "AudioContext.close" [@@bs.val];
-  external createBuffer: float => float => float => AudioBuffer = "AudioContext.createBuffer" [@@bs.val];
-  external createBufferSource: myMediaElement::(option HTMLMediaElement) => AudioBufferSourceNode = "AudioContext.createBufferSource" [@@bs.val];
-  external createMediaElementSource: HTMLMediaElement => MediaElementAudioSourceNode = "AudioContext.createMediaElementSource" [@@bs.val];
-  external createMediaStreamSource: unit => MediaStreamAudioSourceNode = "AudioContext.createMediaStreamSource" [@@bs.val];
-  external createMediaStreamDestination: unit => MediaStream = "AudioContext.createMediaStreamDestination" [@@bs.val];
-  external createScriptProcessor: float => float => float => ScriptProcessorNode = "AudioContext.createScriptProcessor" [@@bs.val];
-  external createAnalyser: unit => AnalyserNode = "AudioContext.createAnalyser" [@@bs.val];
-  external createBiquadFilter: unit => BiquadFilterNode = "AudioContext.createBiquadFilter" [@@bs.val];
-  external createChannelMerger: numberOfInputs::(option float) => ChannelMergerNode = "AudioContext.createChannelMerger" [@@bs.val];
-  external createChannelSplitter: numberOfInputs::(option float) => ChannelSplitterNode = "AudioContext.createChannelSplitter" [@@bs.val];
-  external createConvolver: unit => ConvolverNode = "AudioContext.createConvolver" [@@bs.val];
-  external createDelay: maxDelayTime::(option float) => DelayNode = "AudioContext.createDelay" [@@bs.val];
-  external createDynamicCompressor: unit => DynamicsCompressorNode = "AudioContext.createDynamicCompressor" [@@bs.val];
-  external createGain: unit => GainNode = "AudioContext.createGain" [@@bs.val];
-  external createOscillator: unit => OscillatorNode = "AudioContext.createOscillator" [@@bs.val];
-  external createPanner: unit => PannerNode = "AudioContext.createPanner" [@@bs.val];
-  external createPeriodicWave: Float32Array => Float32Array => options::(option TODO) => PeriodicWave = "AudioContext.createPeriodicWave" [@@bs.val];
-  external createWaveShaper: unit => WaveShaperNode = "AudioContext.createWaveShaper" [@@bs.val];
-  external decodeAudioData: ArrayBuffer => (unit => unit) => (unit => unit) => unit = "AudioContext.decodeAudioData" [@@bs.val];
-  external decodeAudioData: ArrayBuffer => Promise = "AudioContext.decodeAudioData" [@@bs.val];
-  external resume: unit => Promise = "AudioContext.resume" [@@bs.val];
-  external suspend: unit => Promise = "AudioContext.suspend" [@@bs.val];
+  external close: unit => unit = "AudioContext.close" [@@bs.send];
+  external createBuffer: float => float => float => AudioBuffer = "AudioContext.createBuffer" [@@bs.send];
+  external createBufferSource: myMediaElement::(option HTMLMediaElement) => AudioBufferSourceNode = "AudioContext.createBufferSource" [@@bs.send];
+  external createMediaElementSource: HTMLMediaElement => MediaElementAudioSourceNode = "AudioContext.createMediaElementSource" [@@bs.send];
+  external createMediaStreamSource: unit => MediaStreamAudioSourceNode = "AudioContext.createMediaStreamSource" [@@bs.send];
+  external createMediaStreamDestination: unit => MediaStream = "AudioContext.createMediaStreamDestination" [@@bs.send];
+  external createScriptProcessor: float => float => float => ScriptProcessorNode = "AudioContext.createScriptProcessor" [@@bs.send];
+  external createAnalyser: unit => AnalyserNode = "AudioContext.createAnalyser" [@@bs.send];
+  external createBiquadFilter: unit => BiquadFilterNode = "AudioContext.createBiquadFilter" [@@bs.send];
+  external createChannelMerger: numberOfInputs::(option float) => ChannelMergerNode = "AudioContext.createChannelMerger" [@@bs.send];
+  external createChannelSplitter: numberOfInputs::(option float) => ChannelSplitterNode = "AudioContext.createChannelSplitter" [@@bs.send];
+  external createConvolver: unit => ConvolverNode = "AudioContext.createConvolver" [@@bs.send];
+  external createDelay: maxDelayTime::(option float) => DelayNode = "AudioContext.createDelay" [@@bs.send];
+  external createDynamicCompressor: unit => DynamicsCompressorNode = "AudioContext.createDynamicCompressor" [@@bs.send];
+  external createGain: unit => GainNode = "AudioContext.createGain" [@@bs.send];
+  external createOscillator: unit => OscillatorNode = "AudioContext.createOscillator" [@@bs.send];
+  external createPanner: unit => PannerNode = "AudioContext.createPanner" [@@bs.send];
+  external createPeriodicWave: Float32Array => Float32Array => options::(option TODO) => PeriodicWave = "AudioContext.createPeriodicWave" [@@bs.send];
+  external createWaveShaper: unit => WaveShaperNode = "AudioContext.createWaveShaper" [@@bs.send];
+  external decodeAudioData: ArrayBuffer => (unit => unit) => (unit => unit) => unit = "AudioContext.decodeAudioData" [@@bs.send];
+  external decodeAudioData: ArrayBuffer => Promise = "AudioContext.decodeAudioData" [@@bs.send];
+  external resume: unit => Promise = "AudioContext.resume" [@@bs.send];
+  external suspend: unit => Promise = "AudioContext.suspend" [@@bs.send];
 };
 type TODO;
 let module Headers = {
   type t;
+  external create: unit => t = "Headers" [@@bs.new]; 
   external _@@iterator: t => unit => Iterator = "" [@@bs.send];
   external constructor: t => init::(option HeadersInit) => unit = "" [@@bs.send];
   external append: t => string => string => unit = "" [@@bs.send];
@@ -772,6 +831,7 @@ let module Headers = {
 };
 let module URLSearchParams = {
   type t;
+  external create: unit => t = "URLSearchParams" [@@bs.new]; 
   external _@@iterator: t => unit => Iterator = "" [@@bs.send];
   external constructor: t => query::(option TODO) => unit = "" [@@bs.send];
   external append: t => string => string => unit = "" [@@bs.send];
@@ -795,6 +855,7 @@ type TODO;
 type TODO;
 let module Response = {
   type t;
+  external create: unit => t = "Response" [@@bs.new]; 
   external constructor: t => input::(option TODO) => init::(option ResponseOptions) => unit = "" [@@bs.send];
   external clone: t => unit => Response = "" [@@bs.send];
   external error: unit => Response = "" [@@bs.val];
@@ -815,6 +876,7 @@ let module Response = {
 };
 let module Request = {
   type t;
+  external create: unit => t = "Request" [@@bs.new]; 
   external constructor: t => TODO => init::(option RequestOptions) => unit = "" [@@bs.send];
   external clone: t => unit => Request = "" [@@bs.send];
   external url: string = "" [@@bs.get];
@@ -837,6 +899,7 @@ let module Request = {
 external fetch: TODO => init::(option RequestOptions) => Promise = "fetch" [@@bs.val];
 let module MessagePort = {
   type t;
+  external create: unit => t = "MessagePort" [@@bs.new]; 
   external postMessage: t => 'a => transfer::(option Iterable) => unit = "" [@@bs.send];
   external start: t => unit => unit = "" [@@bs.send];
   external close: t => unit => unit = "" [@@bs.send];
@@ -844,6 +907,7 @@ let module MessagePort = {
 };
 let module MessageChannel = {
   type t;
+  external create: unit => t = "MessageChannel" [@@bs.new]; 
   external port1: MessagePort = "" [@@bs.get];
   external port2: MessagePort = "" [@@bs.get];
 };

@@ -1,5 +1,6 @@
 let module Blob = {
   type t;
+  external create: unit => t = "Blob" [@@bs.new]; 
   external constructor: t => blobParts::(option Array) => options::(option TODO) => unit = "" [@@bs.send];
   external isClosed: bool = "" [@@bs.get];
   external size: float = "" [@@bs.get];
@@ -9,6 +10,7 @@ let module Blob = {
 };
 let module FileReader = {
   type t;
+  external create: unit => t = "FileReader" [@@bs.new]; 
   external abort: t => unit => unit = "" [@@bs.send];
   external _DONE: float = "" [@@bs.get];
   external _EMPTY: float = "" [@@bs.get];
@@ -28,17 +30,20 @@ let module FileReader = {
 };
 let module File = {
   type t;
+  external create: unit => t = "File" [@@bs.new]; 
   external lastModifiedDate: 'a = "" [@@bs.get];
   external name: string = "" [@@bs.get];
 };
 let module FileList = {
   type t;
+  external create: unit => t = "FileList" [@@bs.new]; 
   external _@@iterator: t => unit => Iterator = "" [@@bs.send];
   external length: float = "" [@@bs.get];
   external item: t => float => File = "" [@@bs.send];
 };
 let module DataTransfer = {
   type t;
+  external create: unit => t = "DataTransfer" [@@bs.new]; 
   external clearData: t => format::(option string) => unit = "" [@@bs.send];
   external getData: t => string => string = "" [@@bs.send];
   external setData: t => string => string => unit = "" [@@bs.send];
@@ -51,6 +56,7 @@ let module DataTransfer = {
 };
 let module DataTransferItemList = {
   type t;
+  external create: unit => t = "DataTransferItemList" [@@bs.new]; 
   external length: float = "" [@@bs.get];
   external add: t => string => string => TODO = "" [@@bs.send];
   external add: t => File => TODO = "" [@@bs.send];
@@ -59,6 +65,7 @@ let module DataTransferItemList = {
 };
 let module DataTransferItem = {
   type t;
+  external create: unit => t = "DataTransferItem" [@@bs.new]; 
   external kind: string = "" [@@bs.get];
   external _type: string = "" [@@bs.get];
   external getAsString: t => TODO => unit = "" [@@bs.send];
@@ -66,6 +73,7 @@ let module DataTransferItem = {
 };
 let module DOMError = {
   type t;
+  external create: unit => t = "DOMError" [@@bs.new]; 
   external name: string = "" [@@bs.get];
 };
 type TODO;
@@ -78,6 +86,7 @@ type TODO;
 type TODO;
 let module EventTarget = {
   type t;
+  external create: unit => t = "EventTarget" [@@bs.new]; 
   external addEventListener: t => MouseEventTypes => MouseEventListener => useCapture::(option bool) => unit = "" [@@bs.send];
   external addEventListener: t => KeyboardEventTypes => KeyboardEventListener => useCapture::(option bool) => unit = "" [@@bs.send];
   external addEventListener: t => string => EventListener => useCapture::(option bool) => unit = "" [@@bs.send];
@@ -97,6 +106,7 @@ let module EventTarget = {
 type TODO;
 let module Event = {
   type t;
+  external create: unit => t = "Event" [@@bs.new]; 
   external constructor: t => string => eventInitDict::(option Event$Init) => unit = "" [@@bs.send];
   external bubbles: bool = "" [@@bs.get];
   external cancelable: bool = "" [@@bs.get];
@@ -119,17 +129,20 @@ let module Event = {
 type TODO;
 let module CustomEvent = {
   type t;
+  external create: unit => t = "CustomEvent" [@@bs.new]; 
   external constructor: t => string => eventInitDict::(option CustomEvent$Init) => unit = "" [@@bs.send];
   external detail: 'a = "" [@@bs.get];
   external initCustomEvent: t => string => bool => bool => 'a => CustomEvent = "" [@@bs.send];
 };
 let module UIEvent = {
   type t;
+  external create: unit => t = "UIEvent" [@@bs.new]; 
   external detail: float = "" [@@bs.get];
   external view: 'a = "" [@@bs.get];
 };
 let module MouseEvent = {
   type t;
+  external create: unit => t = "MouseEvent" [@@bs.new]; 
   external altKey: bool = "" [@@bs.get];
   external button: float = "" [@@bs.get];
   external buttons: float = "" [@@bs.get];
@@ -152,6 +165,7 @@ let module MouseEvent = {
 };
 let module WheelEvent = {
   type t;
+  external create: unit => t = "WheelEvent" [@@bs.new]; 
   external deltaX: float = "" [@@bs.get];
   external deltaY: float = "" [@@bs.get];
   external deltaZ: float = "" [@@bs.get];
@@ -159,10 +173,12 @@ let module WheelEvent = {
 };
 let module DragEvent = {
   type t;
+  external create: unit => t = "DragEvent" [@@bs.new]; 
   external dataTransfer: TODO = "" [@@bs.get];
 };
 let module ProgressEvent = {
   type t;
+  external create: unit => t = "ProgressEvent" [@@bs.new]; 
   external lengthComputable: bool = "" [@@bs.get];
   external loaded: float = "" [@@bs.get];
   external total: float = "" [@@bs.get];
@@ -170,11 +186,13 @@ let module ProgressEvent = {
 };
 let module PromiseRejectionEvent = {
   type t;
+  external create: unit => t = "PromiseRejectionEvent" [@@bs.new]; 
   external promise: Promise = "" [@@bs.get];
   external reason: 'a = "" [@@bs.get];
 };
 let module MessageEvent = {
   type t;
+  external create: unit => t = "MessageEvent" [@@bs.new]; 
   external data: TODO = "" [@@bs.get];
   external origin: string = "" [@@bs.get];
   external lastEventId: string = "" [@@bs.get];
@@ -182,6 +200,7 @@ let module MessageEvent = {
 };
 let module KeyboardEvent = {
   type t;
+  external create: unit => t = "KeyboardEvent" [@@bs.new]; 
   external altKey: bool = "" [@@bs.get];
   external code: string = "" [@@bs.get];
   external ctrlKey: bool = "" [@@bs.get];
@@ -198,6 +217,7 @@ let module KeyboardEvent = {
 };
 let module Touch = {
   type t;
+  external create: unit => t = "Touch" [@@bs.new]; 
   external clientX: float = "" [@@bs.get];
   external clientY: float = "" [@@bs.get];
   external identifier: float = "" [@@bs.get];
@@ -209,11 +229,13 @@ let module Touch = {
 };
 let module TouchList = {
   type t;
+  external create: unit => t = "TouchList" [@@bs.new]; 
   external length: float = "" [@@bs.get];
   external item: t => float => TODO = "" [@@bs.send];
 };
 let module TouchEvent = {
   type t;
+  external create: unit => t = "TouchEvent" [@@bs.new]; 
   external altKey: bool = "" [@@bs.get];
   external changedTouches: TouchList = "" [@@bs.get];
   external ctrlKey: bool = "" [@@bs.get];
@@ -224,6 +246,7 @@ let module TouchEvent = {
 };
 let module Node = {
   type t;
+  external create: unit => t = "Node" [@@bs.new]; 
   external baseURI: TODO = "" [@@bs.get];
   external childNodes: NodeList = "" [@@bs.get];
   external firstChild: TODO = "" [@@bs.get];
@@ -275,12 +298,14 @@ let module Node = {
 };
 let module NodeList = {
   type t;
+  external create: unit => t = "NodeList" [@@bs.new]; 
   external _@@iterator: t => unit => Iterator = "" [@@bs.send];
   external length: float = "" [@@bs.get];
   external item: t => float => T = "" [@@bs.send];
 };
 let module NamedNodeMap = {
   type t;
+  external create: unit => t = "NamedNodeMap" [@@bs.new]; 
   external length: float = "" [@@bs.get];
   external removeNamedItemNS: t => string => string => Attr = "" [@@bs.send];
   external item: t => float => Attr = "" [@@bs.send];
@@ -292,6 +317,7 @@ let module NamedNodeMap = {
 };
 let module Attr = {
   type t;
+  external create: unit => t = "Attr" [@@bs.new]; 
   external isId: bool = "" [@@bs.get];
   external specified: bool = "" [@@bs.get];
   external ownerElement: Element = "" [@@bs.get];
@@ -300,6 +326,7 @@ let module Attr = {
 };
 let module HTMLCollection = {
   type t;
+  external create: unit => t = "HTMLCollection" [@@bs.new]; 
   external _@@iterator: t => unit => Iterator = "" [@@bs.send];
   external length: float = "" [@@bs.get];
   external item: t => nameOrIndex::(option 'a) => optionalIndex::(option 'a) => Elem = "" [@@bs.send];
@@ -308,6 +335,7 @@ let module HTMLCollection = {
 type TODO;
 let module Document = {
   type t;
+  external create: unit => t = "Document" [@@bs.new]; 
   external _URL: string = "" [@@bs.get];
   external adoptNode: t => Node => Node = "" [@@bs.send];
   external anchors: HTMLCollection = "" [@@bs.get];
@@ -532,6 +560,7 @@ let module Document = {
 };
 let module DocumentFragment = {
   type t;
+  external create: unit => t = "DocumentFragment" [@@bs.new]; 
   external childElementCount: float = "" [@@bs.get];
   external children: HTMLCollection = "" [@@bs.get];
   external firstElementChild: TODO = "" [@@bs.get];
@@ -541,6 +570,7 @@ let module DocumentFragment = {
 };
 let module Selection = {
   type t;
+  external create: unit => t = "Selection" [@@bs.new]; 
   external anchorNode: TODO = "" [@@bs.get];
   external anchorOffset: float = "" [@@bs.get];
   external focusNode: TODO = "" [@@bs.get];
@@ -565,6 +595,7 @@ let module Selection = {
 };
 let module Range = {
   type t;
+  external create: unit => t = "Range" [@@bs.new]; 
   external startOffset: float = "" [@@bs.get];
   external collapsed: bool = "" [@@bs.get];
   external endOffset: float = "" [@@bs.get];
@@ -599,131 +630,131 @@ let module Range = {
 };
 let module DocumentInstance = {
   external _URL: string = "document.URL" [@@bs.val];
-  external adoptNode: Node => Node = "document.adoptNode" [@@bs.val];
+  external adoptNode: Node => Node = "document.adoptNode" [@@bs.send];
   external anchors: HTMLCollection = "document.anchors" [@@bs.val];
   external applets: HTMLCollection = "document.applets" [@@bs.val];
   external body: HTMLElement = "document.body" [@@bs.val];
   external characterSet: string = "document.characterSet" [@@bs.val];
-  external close: unit => unit = "document.close" [@@bs.val];
+  external close: unit => unit = "document.close" [@@bs.send];
   external cookie: string = "document.cookie" [@@bs.val];
-  external createAttribute: string => Attr = "document.createAttribute" [@@bs.val];
-  external createAttributeNS: string => string => Attr = "document.createAttributeNS" [@@bs.val];
-  external createCDATASection: string => Text = "document.createCDATASection" [@@bs.val];
-  external createComment: string => Comment = "document.createComment" [@@bs.val];
-  external createDocumentFragment: unit => DocumentFragment = "document.createDocumentFragment" [@@bs.val];
-  external createElement: "a" => HTMLAnchorElement = "document.createElement" [@@bs.val];
-  external createElement: "audio" => HTMLAudioElement = "document.createElement" [@@bs.val];
-  external createElement: "button" => HTMLButtonElement = "document.createElement" [@@bs.val];
-  external createElement: "canvas" => HTMLCanvasElement = "document.createElement" [@@bs.val];
-  external createElement: "div" => HTMLDivElement = "document.createElement" [@@bs.val];
-  external createElement: "form" => HTMLFormElement = "document.createElement" [@@bs.val];
-  external createElement: "iframe" => HTMLIFrameElement = "document.createElement" [@@bs.val];
-  external createElement: "img" => HTMLImageElement = "document.createElement" [@@bs.val];
-  external createElement: "input" => HTMLInputElement = "document.createElement" [@@bs.val];
-  external createElement: "label" => HTMLLabelElement = "document.createElement" [@@bs.val];
-  external createElement: "link" => HTMLLinkElement = "document.createElement" [@@bs.val];
-  external createElement: "media" => HTMLMediaElement = "document.createElement" [@@bs.val];
-  external createElement: "option" => HTMLOptionElement = "document.createElement" [@@bs.val];
-  external createElement: "p" => HTMLParagraphElement = "document.createElement" [@@bs.val];
-  external createElement: "script" => HTMLScriptElement = "document.createElement" [@@bs.val];
-  external createElement: "select" => HTMLSelectElement = "document.createElement" [@@bs.val];
-  external createElement: "source" => HTMLSourceElement = "document.createElement" [@@bs.val];
-  external createElement: "span" => HTMLSpanElement = "document.createElement" [@@bs.val];
-  external createElement: "style" => HTMLStyleElement = "document.createElement" [@@bs.val];
-  external createElement: "textarea" => HTMLTextAreaElement = "document.createElement" [@@bs.val];
-  external createElement: "video" => HTMLVideoElement = "document.createElement" [@@bs.val];
-  external createElement: "tr" => HTMLTableRowElement = "document.createElement" [@@bs.val];
-  external createElement: TODO => HTMLTableCellElement = "document.createElement" [@@bs.val];
-  external createElement: string => HTMLElement = "document.createElement" [@@bs.val];
-  external createElementNS: string => string => Element = "document.createElementNS" [@@bs.val];
-  external createTextNode: string => Text = "document.createTextNode" [@@bs.val];
+  external createAttribute: string => Attr = "document.createAttribute" [@@bs.send];
+  external createAttributeNS: string => string => Attr = "document.createAttributeNS" [@@bs.send];
+  external createCDATASection: string => Text = "document.createCDATASection" [@@bs.send];
+  external createComment: string => Comment = "document.createComment" [@@bs.send];
+  external createDocumentFragment: unit => DocumentFragment = "document.createDocumentFragment" [@@bs.send];
+  external createElement: "a" => HTMLAnchorElement = "document.createElement" [@@bs.send];
+  external createElement: "audio" => HTMLAudioElement = "document.createElement" [@@bs.send];
+  external createElement: "button" => HTMLButtonElement = "document.createElement" [@@bs.send];
+  external createElement: "canvas" => HTMLCanvasElement = "document.createElement" [@@bs.send];
+  external createElement: "div" => HTMLDivElement = "document.createElement" [@@bs.send];
+  external createElement: "form" => HTMLFormElement = "document.createElement" [@@bs.send];
+  external createElement: "iframe" => HTMLIFrameElement = "document.createElement" [@@bs.send];
+  external createElement: "img" => HTMLImageElement = "document.createElement" [@@bs.send];
+  external createElement: "input" => HTMLInputElement = "document.createElement" [@@bs.send];
+  external createElement: "label" => HTMLLabelElement = "document.createElement" [@@bs.send];
+  external createElement: "link" => HTMLLinkElement = "document.createElement" [@@bs.send];
+  external createElement: "media" => HTMLMediaElement = "document.createElement" [@@bs.send];
+  external createElement: "option" => HTMLOptionElement = "document.createElement" [@@bs.send];
+  external createElement: "p" => HTMLParagraphElement = "document.createElement" [@@bs.send];
+  external createElement: "script" => HTMLScriptElement = "document.createElement" [@@bs.send];
+  external createElement: "select" => HTMLSelectElement = "document.createElement" [@@bs.send];
+  external createElement: "source" => HTMLSourceElement = "document.createElement" [@@bs.send];
+  external createElement: "span" => HTMLSpanElement = "document.createElement" [@@bs.send];
+  external createElement: "style" => HTMLStyleElement = "document.createElement" [@@bs.send];
+  external createElement: "textarea" => HTMLTextAreaElement = "document.createElement" [@@bs.send];
+  external createElement: "video" => HTMLVideoElement = "document.createElement" [@@bs.send];
+  external createElement: "tr" => HTMLTableRowElement = "document.createElement" [@@bs.send];
+  external createElement: TODO => HTMLTableCellElement = "document.createElement" [@@bs.send];
+  external createElement: string => HTMLElement = "document.createElement" [@@bs.send];
+  external createElementNS: string => string => Element = "document.createElementNS" [@@bs.send];
+  external createTextNode: string => Text = "document.createTextNode" [@@bs.send];
   external currentScript: TODO = "document.currentScript" [@@bs.val];
   external doctype: DocumentType = "document.doctype" [@@bs.val];
   external documentElement: HTMLElement = "document.documentElement" [@@bs.val];
   external documentMode: float = "document.documentMode" [@@bs.val];
   external domain: TODO = "document.domain" [@@bs.val];
   external embeds: HTMLCollection = "document.embeds" [@@bs.val];
-  external execCommand: string => showUI::(option bool) => value::(option 'a) => bool = "document.execCommand" [@@bs.val];
+  external execCommand: string => showUI::(option bool) => value::(option 'a) => bool = "document.execCommand" [@@bs.send];
   external forms: HTMLCollection = "document.forms" [@@bs.val];
-  external getElementById: string => HTMLElement = "document.getElementById" [@@bs.val];
-  external getElementsByClassName: string => HTMLCollection = "document.getElementsByClassName" [@@bs.val];
-  external getElementsByName: string => HTMLCollection = "document.getElementsByName" [@@bs.val];
-  external getElementsByTagName: "a" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "audio" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "button" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "canvas" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "div" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "form" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "iframe" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "img" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "input" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "label" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "link" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "media" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "option" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "p" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "script" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "select" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "source" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "span" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "style" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "textarea" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "video" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: "tr" => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: TODO => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagName: string => HTMLCollection = "document.getElementsByTagName" [@@bs.val];
-  external getElementsByTagNameNS: string => "a" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "audio" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "button" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "canvas" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "div" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "form" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "iframe" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "img" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "input" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "label" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "link" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "media" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "option" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "p" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "script" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "select" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "source" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "span" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "style" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "textarea" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "video" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => "tr" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => TODO => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
-  external getElementsByTagNameNS: string => string => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.val];
+  external getElementById: string => HTMLElement = "document.getElementById" [@@bs.send];
+  external getElementsByClassName: string => HTMLCollection = "document.getElementsByClassName" [@@bs.send];
+  external getElementsByName: string => HTMLCollection = "document.getElementsByName" [@@bs.send];
+  external getElementsByTagName: "a" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "audio" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "button" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "canvas" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "div" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "form" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "iframe" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "img" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "input" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "label" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "link" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "media" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "option" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "p" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "script" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "select" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "source" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "span" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "style" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "textarea" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "video" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: "tr" => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: TODO => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagName: string => HTMLCollection = "document.getElementsByTagName" [@@bs.send];
+  external getElementsByTagNameNS: string => "a" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "audio" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "button" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "canvas" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "div" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "form" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "iframe" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "img" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "input" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "label" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "link" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "media" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "option" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "p" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "script" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "select" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "source" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "span" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "style" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "textarea" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "video" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => "tr" => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => TODO => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
+  external getElementsByTagNameNS: string => string => HTMLCollection = "document.getElementsByTagNameNS" [@@bs.send];
   external head: HTMLElement = "document.head" [@@bs.val];
   external images: HTMLCollection = "document.images" [@@bs.val];
   external implementation: DOMImplementation = "document.implementation" [@@bs.val];
-  external importNode: Node => bool => Node = "document.importNode" [@@bs.val];
+  external importNode: Node => bool => Node = "document.importNode" [@@bs.send];
   external inputEncoding: string = "document.inputEncoding" [@@bs.val];
   external lastModified: string = "document.lastModified" [@@bs.val];
   external links: HTMLCollection = "document.links" [@@bs.val];
   external media: string = "document.media" [@@bs.val];
-  external open: url::(option string) => name::(option string) => features::(option string) => replace::(option bool) => 'a = "document.open" [@@bs.val];
+  external open: url::(option string) => name::(option string) => features::(option string) => replace::(option bool) => 'a = "document.open" [@@bs.send];
   external readyState: string = "document.readyState" [@@bs.val];
   external referrer: string = "document.referrer" [@@bs.val];
   external scripts: HTMLCollection = "document.scripts" [@@bs.val];
   external styleSheets: StyleSheetList = "document.styleSheets" [@@bs.val];
   external title: string = "document.title" [@@bs.val];
-  external write: array 'rest => unit = "document.write" [@@bs.val] [@@bs.splice];
-  external writeln: array 'rest => unit = "document.writeln" [@@bs.val] [@@bs.splice];
+  external write: array 'rest => unit = "document.write" [@@bs.send] [@@bs.splice];
+  external writeln: array 'rest => unit = "document.writeln" [@@bs.send] [@@bs.splice];
   external xmlEncoding: string = "document.xmlEncoding" [@@bs.val];
   external xmlStandalone: bool = "document.xmlStandalone" [@@bs.val];
   external xmlVersion: string = "document.xmlVersion" [@@bs.val];
-  external registerElement: string => options::(option ElementRegistrationOptions) => 'a = "document.registerElement" [@@bs.val];
-  external getSelection: unit => TODO = "document.getSelection" [@@bs.val];
+  external registerElement: string => options::(option ElementRegistrationOptions) => 'a = "document.registerElement" [@@bs.send];
+  external getSelection: unit => TODO = "document.getSelection" [@@bs.send];
   external activeElement: HTMLElement = "document.activeElement" [@@bs.val];
-  external hasFocus: unit => bool = "document.hasFocus" [@@bs.val];
+  external hasFocus: unit => bool = "document.hasFocus" [@@bs.send];
   external location: Location = "document.location" [@@bs.val];
-  external createEvent: "CustomEvent" => CustomEvent = "document.createEvent" [@@bs.val];
-  external createEvent: string => Event = "document.createEvent" [@@bs.val];
-  external createRange: unit => Range = "document.createRange" [@@bs.val];
-  external elementFromPoint: float => float => HTMLElement = "document.elementFromPoint" [@@bs.val];
+  external createEvent: "CustomEvent" => CustomEvent = "document.createEvent" [@@bs.send];
+  external createEvent: string => Event = "document.createEvent" [@@bs.send];
+  external createRange: unit => Range = "document.createRange" [@@bs.send];
+  external elementFromPoint: float => float => HTMLElement = "document.elementFromPoint" [@@bs.send];
   external defaultView: 'a = "document.defaultView" [@@bs.val];
   external compatMode: TODO = "document.compatMode" [@@bs.val];
   external hidden: bool = "document.hidden" [@@bs.val];
@@ -731,97 +762,98 @@ let module DocumentInstance = {
   external children: HTMLCollection = "document.children" [@@bs.val];
   external firstElementChild: TODO = "document.firstElementChild" [@@bs.val];
   external lastElementChild: TODO = "document.lastElementChild" [@@bs.val];
-  external querySelector: string => HTMLElement = "document.querySelector" [@@bs.val];
-  external querySelectorAll: string => NodeList = "document.querySelectorAll" [@@bs.val];
-  external createNodeIterator: RootNodeT => 2. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createTreeWalker: RootNodeT => 2. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createNodeIterator: RootNodeT => 256. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 257. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 260. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 261. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 384. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 385. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 388. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 389. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 512. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 513. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 516. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 517. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 640. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 641. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 644. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 645. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 768. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 769. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 772. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 773. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 896. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 897. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 900. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 901. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createTreeWalker: RootNodeT => 256. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 257. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 260. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 261. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 384. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 385. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 388. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 389. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 512. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 513. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 516. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 517. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 640. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 641. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 644. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 645. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 768. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 769. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 772. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 773. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 896. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 897. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 900. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 901. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createNodeIterator: RootNodeT => 1024. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 1025. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 1028. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 1029. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 1152. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 1153. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 1156. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 1157. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createTreeWalker: RootNodeT => 1024. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 1025. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 1028. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 1029. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 1152. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 1153. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 1156. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 1157. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createNodeIterator: RootNodeT => 1. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 4. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 5. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 128. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 129. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 132. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => 133. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createNodeIterator: RootNodeT => -1. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createTreeWalker: RootNodeT => 1. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 4. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 5. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 128. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 129. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 132. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => 133. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createTreeWalker: RootNodeT => -1. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createNodeIterator: RootNodeT => float => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createTreeWalker: RootNodeT => float => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.val];
-  external createNodeIterator: RootNodeT => unit => NodeIterator = "document.createNodeIterator" [@@bs.val];
-  external createTreeWalker: RootNodeT => unit => TreeWalker = "document.createTreeWalker" [@@bs.val];
+  external querySelector: string => HTMLElement = "document.querySelector" [@@bs.send];
+  external querySelectorAll: string => NodeList = "document.querySelectorAll" [@@bs.send];
+  external createNodeIterator: RootNodeT => 2. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createTreeWalker: RootNodeT => 2. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createNodeIterator: RootNodeT => 256. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 257. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 260. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 261. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 384. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 385. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 388. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 389. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 512. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 513. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 516. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 517. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 640. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 641. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 644. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 645. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 768. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 769. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 772. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 773. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 896. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 897. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 900. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 901. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createTreeWalker: RootNodeT => 256. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 257. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 260. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 261. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 384. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 385. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 388. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 389. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 512. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 513. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 516. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 517. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 640. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 641. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 644. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 645. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 768. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 769. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 772. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 773. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 896. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 897. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 900. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 901. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createNodeIterator: RootNodeT => 1024. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 1025. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 1028. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 1029. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 1152. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 1153. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 1156. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 1157. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createTreeWalker: RootNodeT => 1024. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 1025. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 1028. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 1029. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 1152. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 1153. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 1156. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 1157. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createNodeIterator: RootNodeT => 1. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 4. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 5. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 128. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 129. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 132. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => 133. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createNodeIterator: RootNodeT => -1. => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createTreeWalker: RootNodeT => 1. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 4. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 5. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 128. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 129. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 132. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => 133. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createTreeWalker: RootNodeT => -1. => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createNodeIterator: RootNodeT => float => filter::(option NodeFilterInterface) => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createTreeWalker: RootNodeT => float => filter::(option NodeFilterInterface) => entityReferenceExpansion::(option bool) => TreeWalker = "document.createTreeWalker" [@@bs.send];
+  external createNodeIterator: RootNodeT => unit => NodeIterator = "document.createNodeIterator" [@@bs.send];
+  external createTreeWalker: RootNodeT => unit => TreeWalker = "document.createTreeWalker" [@@bs.send];
 };
 let module DOMTokenList = {
   type t;
+  external create: unit => t = "DOMTokenList" [@@bs.new]; 
   external length: float = "" [@@bs.get];
   external item: t => float => string = "" [@@bs.send];
   external contains: t => string => bool = "" [@@bs.send];
@@ -831,6 +863,7 @@ let module DOMTokenList = {
 };
 let module Element = {
   type t;
+  external create: unit => t = "Element" [@@bs.new]; 
   external attributes: NamedNodeMap = "" [@@bs.get];
   external childElementCount: float = "" [@@bs.get];
   external children: HTMLCollection = "" [@@bs.get];
@@ -936,6 +969,7 @@ let module Element = {
 };
 let module HTMLElement = {
   type t;
+  external create: unit => t = "HTMLElement" [@@bs.new]; 
   external blur: t => unit => unit = "" [@@bs.send];
   external click: t => unit => unit = "" [@@bs.send];
   external focus: t => unit => unit = "" [@@bs.send];
@@ -1024,12 +1058,14 @@ let module HTMLElement = {
 };
 let module HTMLTableCellElement = {
   type t;
+  external create: unit => t = "HTMLTableCellElement" [@@bs.new]; 
   external colSpan: float = "" [@@bs.get];
   external rowSpan: float = "" [@@bs.get];
   external cellIndex: float = "" [@@bs.get];
 };
 let module HTMLTableRowElement = {
   type t;
+  external create: unit => t = "HTMLTableRowElement" [@@bs.new]; 
   external align: TODO = "" [@@bs.get];
   external rowIndex: float = "" [@@bs.get];
   external deleteCell: t => float => unit = "" [@@bs.send];
@@ -1037,24 +1073,29 @@ let module HTMLTableRowElement = {
 };
 let module HTMLMenuElement = {
   type t;
+  external create: unit => t = "HTMLMenuElement" [@@bs.new]; 
   external getCompact: t => unit => bool = "" [@@bs.send];
   external setCompact: t => bool => unit = "" [@@bs.send];
 };
 let module HTMLBaseElement = {
   type t;
+  external create: unit => t = "HTMLBaseElement" [@@bs.new]; 
   external href: string = "" [@@bs.get];
   external target: string = "" [@@bs.get];
 };
 let module CanvasGradient = {
   type t;
+  external create: unit => t = "CanvasGradient" [@@bs.new]; 
   external addColorStop: t => float => string => unit = "" [@@bs.send];
 };
 let module CanvasPattern = {
   type t;
+  external create: unit => t = "CanvasPattern" [@@bs.new]; 
   external setTransform: t => SVGMatrix => unit = "" [@@bs.send];
 };
 let module ImageBitmap = {
   type t;
+  external create: unit => t = "ImageBitmap" [@@bs.new]; 
   external close: t => unit => unit = "" [@@bs.send];
   external width: float = "" [@@bs.get];
   external height: float = "" [@@bs.get];
@@ -1063,6 +1104,7 @@ type TODO;
 type TODO;
 let module HitRegionOptions = {
   type t;
+  external create: unit => t = "HitRegionOptions" [@@bs.new]; 
   external path: Path2D = "" [@@bs.get];
   external fillRule: CanvasFillRule = "" [@@bs.get];
   external id: string = "" [@@bs.get];
@@ -1074,6 +1116,7 @@ let module HitRegionOptions = {
 };
 let module CanvasDrawingStyles = {
   type t;
+  external create: unit => t = "CanvasDrawingStyles" [@@bs.new]; 
   external lineWidth: float = "" [@@bs.get];
   external lineCap: string = "" [@@bs.get];
   external lineJoin: string = "" [@@bs.get];
@@ -1088,6 +1131,7 @@ let module CanvasDrawingStyles = {
 };
 let module SVGMatrix = {
   type t;
+  external create: unit => t = "SVGMatrix" [@@bs.new]; 
   external getComponent: t => float => float = "" [@@bs.send];
   external mMultiply: t => SVGMatrix => SVGMatrix = "" [@@bs.send];
   external inverse: t => unit => SVGMatrix = "" [@@bs.send];
@@ -1097,6 +1141,7 @@ let module SVGMatrix = {
 };
 let module TextMetrics = {
   type t;
+  external create: unit => t = "TextMetrics" [@@bs.new]; 
   external width: float = "" [@@bs.get];
   external actualBoundingBoxLeft: float = "" [@@bs.get];
   external actualBoundingBoxRight: float = "" [@@bs.get];
@@ -1112,6 +1157,7 @@ let module TextMetrics = {
 };
 let module Path2D = {
   type t;
+  external create: unit => t = "Path2D" [@@bs.new]; 
   external addPath: t => Path2D => transformation::(option TODO) => unit = "" [@@bs.send];
   external addPathByStrokingPath: t => Path2D => CanvasDrawingStyles => transformation::(option TODO) => unit = "" [@@bs.send];
   external addText: t => string => CanvasDrawingStyles => TODO => float => float => maxWidth::(option float) => unit = "" [@@bs.send];
@@ -1131,12 +1177,14 @@ let module Path2D = {
 };
 let module ImageData = {
   type t;
+  external create: unit => t = "ImageData" [@@bs.new]; 
   external width: float = "" [@@bs.get];
   external height: float = "" [@@bs.get];
   external data: Uint8ClampedArray = "" [@@bs.get];
 };
 let module CanvasRenderingContext2D = {
   type t;
+  external create: unit => t = "CanvasRenderingContext2D" [@@bs.new]; 
   external canvas: HTMLCanvasElement = "" [@@bs.get];
   external width: float = "" [@@bs.get];
   external height: float = "" [@@bs.get];
@@ -1219,10 +1267,12 @@ let module CanvasRenderingContext2D = {
 };
 let module WebGLRenderingContext = {
   type t;
+  external create: unit => t = "WebGLRenderingContext" [@@bs.new]; 
 };
 type TODO;
 let module HTMLCanvasElement = {
   type t;
+  external create: unit => t = "HTMLCanvasElement" [@@bs.new]; 
   external width: float = "" [@@bs.get];
   external height: float = "" [@@bs.get];
   external getContext: t => "2d" => array 'rest => TODO = "" [@@bs.send] [@@bs.splice];
@@ -1233,6 +1283,7 @@ let module HTMLCanvasElement = {
 };
 let module HTMLFormElement = {
   type t;
+  external create: unit => t = "HTMLFormElement" [@@bs.new]; 
   external acceptCharset: string = "" [@@bs.get];
   external action: string = "" [@@bs.get];
   external elements: HTMLCollection = "" [@@bs.get];
@@ -1250,6 +1301,7 @@ let module HTMLFormElement = {
 };
 let module HTMLIFrameElement = {
   type t;
+  external create: unit => t = "HTMLIFrameElement" [@@bs.new]; 
   external allowFullScreen: bool = "" [@@bs.get];
   external frameBorder: string = "" [@@bs.get];
   external height: string = "" [@@bs.get];
@@ -1264,6 +1316,7 @@ let module HTMLIFrameElement = {
 };
 let module HTMLImageElement = {
   type t;
+  external create: unit => t = "HTMLImageElement" [@@bs.new]; 
   external alt: string = "" [@@bs.get];
   external complete: bool = "" [@@bs.get];
   external crossOrigin: TODO = "" [@@bs.get];
@@ -1280,10 +1333,12 @@ let module HTMLImageElement = {
 };
 let module Image = {
   type t;
+  external create: unit => t = "Image" [@@bs.new]; 
   external constructor: t => width::(option float) => height::(option float) => unit = "" [@@bs.send];
 };
 let module MediaError = {
   type t;
+  external create: unit => t = "MediaError" [@@bs.new]; 
   external _MEDIA_ERR_ABORTED: float = "" [@@bs.get];
   external _MEDIA_ERR_NETWORK: float = "" [@@bs.get];
   external _MEDIA_ERR_DECODE: float = "" [@@bs.get];
@@ -1292,12 +1347,14 @@ let module MediaError = {
 };
 let module TimeRanges = {
   type t;
+  external create: unit => t = "TimeRanges" [@@bs.new]; 
   external length: float = "" [@@bs.get];
   external start: t => float => float = "" [@@bs.send];
   external end: t => float => float = "" [@@bs.send];
 };
 let module AudioTrack = {
   type t;
+  external create: unit => t = "AudioTrack" [@@bs.new]; 
   external id: string = "" [@@bs.get];
   external kind: string = "" [@@bs.get];
   external label: string = "" [@@bs.get];
@@ -1306,6 +1363,7 @@ let module AudioTrack = {
 };
 let module AudioTrackList = {
   type t;
+  external create: unit => t = "AudioTrackList" [@@bs.new]; 
   external length: float = "" [@@bs.get];
   external getTrackById: t => string => TODO = "" [@@bs.send];
   external onchange: 'a => 'a = "" [@@bs.get];
@@ -1314,6 +1372,7 @@ let module AudioTrackList = {
 };
 let module VideoTrack = {
   type t;
+  external create: unit => t = "VideoTrack" [@@bs.new]; 
   external id: string = "" [@@bs.get];
   external kind: string = "" [@@bs.get];
   external label: string = "" [@@bs.get];
@@ -1322,6 +1381,7 @@ let module VideoTrack = {
 };
 let module VideoTrackList = {
   type t;
+  external create: unit => t = "VideoTrackList" [@@bs.new]; 
   external length: float = "" [@@bs.get];
   external getTrackById: t => string => TODO = "" [@@bs.send];
   external selectedIndex: float = "" [@@bs.get];
@@ -1331,6 +1391,7 @@ let module VideoTrackList = {
 };
 let module TextTrackCue = {
   type t;
+  external create: unit => t = "TextTrackCue" [@@bs.new]; 
   external constructor: t => float => float => string => unit = "" [@@bs.send];
   external track: TextTrack = "" [@@bs.get];
   external id: string = "" [@@bs.get];
@@ -1350,11 +1411,13 @@ let module TextTrackCue = {
 };
 let module TextTrackCueList = {
   type t;
+  external create: unit => t = "TextTrackCueList" [@@bs.new]; 
   external length: float = "" [@@bs.get];
   external getCueById: t => string => TODO = "" [@@bs.send];
 };
 let module TextTrack = {
   type t;
+  external create: unit => t = "TextTrack" [@@bs.new]; 
   external kind: string = "" [@@bs.get];
   external label: string = "" [@@bs.get];
   external language: string = "" [@@bs.get];
@@ -1367,12 +1430,14 @@ let module TextTrack = {
 };
 let module TextTrackList = {
   type t;
+  external create: unit => t = "TextTrackList" [@@bs.new]; 
   external length: float = "" [@@bs.get];
   external onaddtrack: 'a => 'a = "" [@@bs.get];
   external onremovetrack: 'a => 'a = "" [@@bs.get];
 };
 let module HTMLMediaElement = {
   type t;
+  external create: unit => t = "HTMLMediaElement" [@@bs.new]; 
   external error: TODO = "" [@@bs.get];
   external src: string = "" [@@bs.get];
   external srcObject: TODO = "" [@@bs.get];
@@ -1421,9 +1486,11 @@ let module HTMLMediaElement = {
 };
 let module HTMLAudioElement = {
   type t;
+  external create: unit => t = "HTMLAudioElement" [@@bs.new]; 
 };
 let module HTMLVideoElement = {
   type t;
+  external create: unit => t = "HTMLVideoElement" [@@bs.new]; 
   external width: float = "" [@@bs.get];
   external height: float = "" [@@bs.get];
   external videoWidth: float = "" [@@bs.get];
@@ -1432,6 +1499,7 @@ let module HTMLVideoElement = {
 };
 let module HTMLSourceElement = {
   type t;
+  external create: unit => t = "HTMLSourceElement" [@@bs.new]; 
   external src: string = "" [@@bs.get];
   external _type: string = "" [@@bs.get];
   external srcset: string = "" [@@bs.get];
@@ -1440,6 +1508,7 @@ let module HTMLSourceElement = {
 };
 let module ValidityState = {
   type t;
+  external create: unit => t = "ValidityState" [@@bs.new]; 
   external badInput: bool = "" [@@bs.get];
   external customError: bool = "" [@@bs.get];
   external patternMismatch: bool = "" [@@bs.get];
@@ -1454,6 +1523,7 @@ type TODO;
 type TODO;
 let module HTMLInputElement = {
   type t;
+  external create: unit => t = "HTMLInputElement" [@@bs.new]; 
   external accept: string = "" [@@bs.get];
   external align: string = "" [@@bs.get];
   external alt: string = "" [@@bs.get];
@@ -1523,6 +1593,7 @@ let module HTMLInputElement = {
 };
 let module HTMLButtonElement = {
   type t;
+  external create: unit => t = "HTMLButtonElement" [@@bs.new]; 
   external disabled: bool = "" [@@bs.get];
   external form: TODO = "" [@@bs.get];
   external name: string = "" [@@bs.get];
@@ -1532,6 +1603,7 @@ let module HTMLButtonElement = {
 };
 let module HTMLTextAreaElement = {
   type t;
+  external create: unit => t = "HTMLTextAreaElement" [@@bs.new]; 
   external autofocus: bool = "" [@@bs.get];
   external cols: float = "" [@@bs.get];
   external dirName: string = "" [@@bs.get];
@@ -1562,6 +1634,7 @@ let module HTMLTextAreaElement = {
 };
 let module HTMLSelectElement = {
   type t;
+  external create: unit => t = "HTMLSelectElement" [@@bs.new]; 
   external disabled: bool = "" [@@bs.get];
   external form: TODO = "" [@@bs.get];
   external length: float = "" [@@bs.get];
@@ -1578,12 +1651,14 @@ let module HTMLSelectElement = {
 };
 let module HTMLOptionsCollection = {
   type t;
+  external create: unit => t = "HTMLOptionsCollection" [@@bs.new]; 
   external length: float = "" [@@bs.get];
   external item: t => float => Node = "" [@@bs.send];
   external namedItem: t => string => Node = "" [@@bs.send];
 };
 let module HTMLOptionElement = {
   type t;
+  external create: unit => t = "HTMLOptionElement" [@@bs.new]; 
   external defaultSelected: bool = "" [@@bs.get];
   external disabled: bool = "" [@@bs.get];
   external form: TODO = "" [@@bs.get];
@@ -1595,6 +1670,7 @@ let module HTMLOptionElement = {
 };
 let module HTMLAnchorElement = {
   type t;
+  external create: unit => t = "HTMLAnchorElement" [@@bs.new]; 
   external charset: string = "" [@@bs.get];
   external coords: string = "" [@@bs.get];
   external download: string = "" [@@bs.get];
@@ -1621,12 +1697,14 @@ let module HTMLAnchorElement = {
 };
 let module HTMLLabelElement = {
   type t;
+  external create: unit => t = "HTMLLabelElement" [@@bs.new]; 
   external form: TODO = "" [@@bs.get];
   external htmlFor: string = "" [@@bs.get];
   external control: TODO = "" [@@bs.get];
 };
 let module HTMLLinkElement = {
   type t;
+  external create: unit => t = "HTMLLinkElement" [@@bs.new]; 
   external crossOrigin: TODO = "" [@@bs.get];
   external href: string = "" [@@bs.get];
   external hreflang: string = "" [@@bs.get];
@@ -1637,6 +1715,7 @@ let module HTMLLinkElement = {
 };
 let module HTMLScriptElement = {
   type t;
+  external create: unit => t = "HTMLScriptElement" [@@bs.new]; 
   external async: bool = "" [@@bs.get];
   external charset: string = "" [@@bs.get];
   external crossOrigin: string = "" [@@bs.get];
@@ -1647,6 +1726,7 @@ let module HTMLScriptElement = {
 };
 let module HTMLStyleElement = {
   type t;
+  external create: unit => t = "HTMLStyleElement" [@@bs.new]; 
   external disabled: bool = "" [@@bs.get];
   external media: string = "" [@@bs.get];
   external scoped: bool = "" [@@bs.get];
@@ -1655,22 +1735,28 @@ let module HTMLStyleElement = {
 };
 let module HTMLParagraphElement = {
   type t;
+  external create: unit => t = "HTMLParagraphElement" [@@bs.new]; 
   external align: TODO = "" [@@bs.get];
 };
 let module HTMLDivElement = {
   type t;
+  external create: unit => t = "HTMLDivElement" [@@bs.new]; 
 };
 let module HTMLSpanElement = {
   type t;
+  external create: unit => t = "HTMLSpanElement" [@@bs.new]; 
 };
 let module HTMLAppletElement = {
   type t;
+  external create: unit => t = "HTMLAppletElement" [@@bs.new]; 
 };
 let module HTMLEmbedElement = {
   type t;
+  external create: unit => t = "HTMLEmbedElement" [@@bs.new]; 
 };
 let module TextRange = {
   type t;
+  external create: unit => t = "TextRange" [@@bs.new]; 
   external boundingLeft: float = "" [@@bs.get];
   external htmlText: string = "" [@@bs.get];
   external offsetLeft: float = "" [@@bs.get];
@@ -1711,6 +1797,7 @@ let module TextRange = {
 };
 let module ClientRect = {
   type t;
+  external create: unit => t = "ClientRect" [@@bs.new]; 
   external left: float = "" [@@bs.get];
   external width: float = "" [@@bs.get];
   external right: float = "" [@@bs.get];
@@ -1720,12 +1807,14 @@ let module ClientRect = {
 };
 let module ClientRectList = {
   type t;
+  external create: unit => t = "ClientRectList" [@@bs.new]; 
   external _@@iterator: t => unit => Iterator = "" [@@bs.send];
   external length: float = "" [@@bs.get];
   external item: t => float => ClientRect = "" [@@bs.send];
 };
 let module DOMImplementation = {
   type t;
+  external create: unit => t = "DOMImplementation" [@@bs.new]; 
   external createDocumentType: t => string => string => string => DocumentType = "" [@@bs.send];
   external createDocument: t => string => string => DocumentType => Document = "" [@@bs.send];
   external hasFeature: t => string => version::(option string) => bool = "" [@@bs.send];
@@ -1733,6 +1822,7 @@ let module DOMImplementation = {
 };
 let module DocumentType = {
   type t;
+  external create: unit => t = "DocumentType" [@@bs.new]; 
   external name: string = "" [@@bs.get];
   external notations: NamedNodeMap = "" [@@bs.get];
   external systemId: string = "" [@@bs.get];
@@ -1742,6 +1832,7 @@ let module DocumentType = {
 };
 let module CharacterData = {
   type t;
+  external create: unit => t = "CharacterData" [@@bs.new]; 
   external length: float = "" [@@bs.get];
   external data: string = "" [@@bs.get];
   external deleteData: t => float => float => unit = "" [@@bs.send];
@@ -1752,16 +1843,19 @@ let module CharacterData = {
 };
 let module Text = {
   type t;
+  external create: unit => t = "Text" [@@bs.new]; 
   external wholeText: string = "" [@@bs.get];
   external splitText: t => float => Text = "" [@@bs.send];
   external replaceWholeText: t => string => Text = "" [@@bs.send];
 };
 let module Comment = {
   type t;
+  external create: unit => t = "Comment" [@@bs.new]; 
   external text: string = "" [@@bs.get];
 };
 let module URL = {
   type t;
+  external create: unit => t = "URL" [@@bs.new]; 
   external createObjectURL: Blob => string = "" [@@bs.val];
   external createObjectURL: MediaSource => string = "" [@@bs.val];
   external createFor: Blob => string = "" [@@bs.val];
@@ -1782,6 +1876,7 @@ let module URL = {
 };
 let module MediaSource = {
   type t;
+  external create: unit => t = "MediaSource" [@@bs.new]; 
   external sourceBuffers: SourceBufferList = "" [@@bs.get];
   external activeSourceBuffers: SourceBufferList = "" [@@bs.get];
   external readyState: TODO = "" [@@bs.get];
@@ -1793,6 +1888,7 @@ let module MediaSource = {
 };
 let module SourceBuffer = {
   type t;
+  external create: unit => t = "SourceBuffer" [@@bs.new]; 
   external mode: TODO = "" [@@bs.get];
   external updating: bool = "" [@@bs.get];
   external buffered: TimeRanges = "" [@@bs.get];
@@ -1809,10 +1905,12 @@ let module SourceBuffer = {
 };
 let module SourceBufferList = {
   type t;
+  external create: unit => t = "SourceBufferList" [@@bs.new]; 
   external length: float = "" [@@bs.get];
 };
 let module Storage = {
   type t;
+  external create: unit => t = "Storage" [@@bs.new]; 
   external length: float = "" [@@bs.get];
   external getItem: t => string => TODO = "" [@@bs.send];
   external setItem: t => string => string => unit = "" [@@bs.send];
@@ -1822,10 +1920,12 @@ let module Storage = {
 };
 let module TrackDefaultList = {
   type t;
+  external create: unit => t = "TrackDefaultList" [@@bs.new]; 
   external length: float = "" [@@bs.get];
 };
 let module TrackDefault = {
   type t;
+  external create: unit => t = "TrackDefault" [@@bs.new]; 
   external _type: TODO = "" [@@bs.get];
   external byteStreamTrackID: string = "" [@@bs.get];
   external language: string = "" [@@bs.get];
@@ -1836,6 +1936,7 @@ type TODO;
 type TODO;
 let module NodeFilter = {
   type t;
+  external create: unit => t = "NodeFilter" [@@bs.new]; 
   let _SHOW_ALL = -1.;
   let _SHOW_ELEMENT = 1.;
   let _SHOW_ATTRIBUTE = 2.;
@@ -1856,6 +1957,7 @@ let module NodeFilter = {
 };
 let module NodeIterator = {
   type t;
+  external create: unit => t = "NodeIterator" [@@bs.new]; 
   external root: RootNodeT = "" [@@bs.get];
   external whatToShow: float = "" [@@bs.get];
   external filter: NodeFilter = "" [@@bs.get];
@@ -1868,6 +1970,7 @@ let module NodeIterator = {
 };
 let module TreeWalker = {
   type t;
+  external create: unit => t = "TreeWalker" [@@bs.new]; 
   external root: RootNodeT = "" [@@bs.get];
   external whatToShow: float = "" [@@bs.get];
   external filter: NodeFilter = "" [@@bs.get];
@@ -1887,7 +1990,7 @@ external prompt: message::(option 'a) => value::(option 'a) => string = "prompt"
 external close: unit => unit = "close" [@@bs.val];
 external confirm: message::(option string) => bool = "confirm" [@@bs.val];
 let module EventInstance = {
-  external constructor: string => eventInitDict::(option Event$Init) => unit = "event.constructor" [@@bs.val];
+  external constructor: string => eventInitDict::(option Event$Init) => unit = "event.constructor" [@@bs.send];
   external bubbles: bool = "event.bubbles" [@@bs.val];
   external cancelable: bool = "event.cancelable" [@@bs.val];
   external currentTarget: EventTarget = "event.currentTarget" [@@bs.val];
@@ -1898,24 +2001,24 @@ let module EventInstance = {
   external target: EventTarget = "event.target" [@@bs.val];
   external timeStamp: float = "event.timeStamp" [@@bs.val];
   external _type: string = "event.type" [@@bs.val];
-  external preventDefault: unit => unit = "event.preventDefault" [@@bs.val];
-  external stopImmediatePropagation: unit => unit = "event.stopImmediatePropagation" [@@bs.val];
-  external stopPropagation: unit => unit = "event.stopPropagation" [@@bs.val];
+  external preventDefault: unit => unit = "event.preventDefault" [@@bs.send];
+  external stopImmediatePropagation: unit => unit = "event.stopImmediatePropagation" [@@bs.send];
+  external stopPropagation: unit => unit = "event.stopPropagation" [@@bs.send];
   external _AT_TARGET: float = "event.AT_TARGET" [@@bs.val];
   external _BUBBLING_PHASE: float = "event.BUBBLING_PHASE" [@@bs.val];
   external _CAPTURING_PHASE: float = "event.CAPTURING_PHASE" [@@bs.val];
-  external initEvent: string => bool => bool => unit = "event.initEvent" [@@bs.val];
+  external initEvent: string => bool => bool => unit = "event.initEvent" [@@bs.send];
 };
 external getComputedStyle: Element => pseudoElt::(option string) => 'a = "getComputedStyle" [@@bs.val];
 external requestAnimationFrame: float => unit => float = "requestAnimationFrame" [@@bs.val];
 external cancelAnimationFrame: float => unit = "cancelAnimationFrame" [@@bs.val];
 let module LocalStorageInstance = {
   external length: float = "localStorage.length" [@@bs.val];
-  external getItem: string => TODO = "localStorage.getItem" [@@bs.val];
-  external setItem: string => string => unit = "localStorage.setItem" [@@bs.val];
-  external clear: unit => unit = "localStorage.clear" [@@bs.val];
-  external removeItem: string => unit = "localStorage.removeItem" [@@bs.val];
-  external key: float => TODO = "localStorage.key" [@@bs.val];
+  external getItem: string => TODO = "localStorage.getItem" [@@bs.send];
+  external setItem: string => string => unit = "localStorage.setItem" [@@bs.send];
+  external clear: unit => unit = "localStorage.clear" [@@bs.send];
+  external removeItem: string => unit = "localStorage.removeItem" [@@bs.send];
+  external key: float => TODO = "localStorage.key" [@@bs.send];
 };
 external focus: unit => unit = "focus" [@@bs.val];
 external onfocus: Event => 'a = "onfocus" [@@bs.val];
@@ -1926,11 +2029,11 @@ external print: unit => unit = "print" [@@bs.val];
 external self: 'a = "self" [@@bs.val];
 let module SessionStorageInstance = {
   external length: float = "sessionStorage.length" [@@bs.val];
-  external getItem: string => TODO = "sessionStorage.getItem" [@@bs.val];
-  external setItem: string => string => unit = "sessionStorage.setItem" [@@bs.val];
-  external clear: unit => unit = "sessionStorage.clear" [@@bs.val];
-  external removeItem: string => unit = "sessionStorage.removeItem" [@@bs.val];
-  external key: float => TODO = "sessionStorage.key" [@@bs.val];
+  external getItem: string => TODO = "sessionStorage.getItem" [@@bs.send];
+  external setItem: string => string => unit = "sessionStorage.setItem" [@@bs.send];
+  external clear: unit => unit = "sessionStorage.clear" [@@bs.send];
+  external removeItem: string => unit = "sessionStorage.removeItem" [@@bs.send];
+  external key: float => TODO = "sessionStorage.key" [@@bs.send];
 };
 external status: string = "status" [@@bs.val];
 external top: WindowProxy = "top" [@@bs.val];

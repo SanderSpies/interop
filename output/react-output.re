@@ -1,5 +1,6 @@
 let module React$Component = {
   type t;
+  external create: unit => t = "React$Component" [@@bs.new]; 
   external defaultProps: $Abstract = "" [@@bs.val];
   external props: Props = "" [@@bs.get];
   external state: $Abstract = "" [@@bs.get];
@@ -23,12 +24,14 @@ let module React$Component = {
 };
 let module React$PureComponent = {
   type t;
+  external create: unit => t = "React$PureComponent" [@@bs.new]; 
   external defaultProps: $Abstract = "" [@@bs.val];
   external props: Props = "" [@@bs.get];
   external state: $Abstract = "" [@@bs.get];
 };
 let module LegacyReactComponent = {
   type t;
+  external create: unit => t = "LegacyReactComponent" [@@bs.new]; 
   external getDefaultProps: t => unit => DefaultProps = "" [@@bs.send];
   external getInitialState: t => unit => State = "" [@@bs.send];
   external replaceState: t => State => callback::(option unit => unit) => unit = "" [@@bs.send];
@@ -47,6 +50,7 @@ type TODO;
 type TODO;
 let module React$Element = {
   type t;
+  external create: unit => t = "React$Element" [@@bs.new]; 
   external _type: ReactClass = "" [@@bs.get];
   external props: $PropsOf = "" [@@bs.get];
   external key: TODO = "" [@@bs.get];
@@ -57,6 +61,7 @@ type TODO;
 type TODO;
 let module SyntheticEvent = {
   type t;
+  external create: unit => t = "SyntheticEvent" [@@bs.new]; 
   external bubbles: bool = "" [@@bs.get];
   external cancelable: bool = "" [@@bs.get];
   external currentTarget: EventTarget = "" [@@bs.get];
@@ -75,27 +80,33 @@ let module SyntheticEvent = {
 };
 let module SyntheticClipboardEvent = {
   type t;
+  external create: unit => t = "SyntheticClipboardEvent" [@@bs.new]; 
   external clipboardData: 'a = "" [@@bs.get];
 };
 let module SyntheticCompositionEvent = {
   type t;
+  external create: unit => t = "SyntheticCompositionEvent" [@@bs.new]; 
   external data: 'a = "" [@@bs.get];
 };
 let module SyntheticInputEvent = {
   type t;
+  external create: unit => t = "SyntheticInputEvent" [@@bs.new]; 
   external data: 'a = "" [@@bs.get];
 };
 let module SyntheticUIEvent = {
   type t;
+  external create: unit => t = "SyntheticUIEvent" [@@bs.new]; 
   external detail: float = "" [@@bs.get];
   external view: 'a = "" [@@bs.get];
 };
 let module SyntheticFocusEvent = {
   type t;
+  external create: unit => t = "SyntheticFocusEvent" [@@bs.new]; 
   external relatedTarget: EventTarget = "" [@@bs.get];
 };
 let module SyntheticKeyboardEvent = {
   type t;
+  external create: unit => t = "SyntheticKeyboardEvent" [@@bs.new]; 
   external altKey: bool = "" [@@bs.get];
   external charCode: float = "" [@@bs.get];
   external ctrlKey: bool = "" [@@bs.get];
@@ -111,6 +122,7 @@ let module SyntheticKeyboardEvent = {
 };
 let module SyntheticMouseEvent = {
   type t;
+  external create: unit => t = "SyntheticMouseEvent" [@@bs.new]; 
   external altKey: bool = "" [@@bs.get];
   external button: float = "" [@@bs.get];
   external buttons: float = "" [@@bs.get];
@@ -128,10 +140,12 @@ let module SyntheticMouseEvent = {
 };
 let module SyntheticDragEvent = {
   type t;
+  external create: unit => t = "SyntheticDragEvent" [@@bs.new]; 
   external dataTransfer: 'a = "" [@@bs.get];
 };
 let module SyntheticWheelEvent = {
   type t;
+  external create: unit => t = "SyntheticWheelEvent" [@@bs.new]; 
   external deltaMode: float = "" [@@bs.get];
   external deltaX: float = "" [@@bs.get];
   external deltaY: float = "" [@@bs.get];
@@ -139,6 +153,7 @@ let module SyntheticWheelEvent = {
 };
 let module SyntheticTouchEvent = {
   type t;
+  external create: unit => t = "SyntheticTouchEvent" [@@bs.new]; 
   external altKey: bool = "" [@@bs.get];
   external changedTouches: 'a = "" [@@bs.get];
   external ctrlKey: bool = "" [@@bs.get];

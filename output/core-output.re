@@ -43,36 +43,47 @@ let module Object = {
 };
 let module $SymbolHasInstance = {
   type t;
+  external create: unit => t = "$SymbolHasInstance" [@@bs.new]; 
 };
 let module $SymboIsConcatSpreadable = {
   type t;
+  external create: unit => t = "$SymboIsConcatSpreadable" [@@bs.new]; 
 };
 let module $SymbolIterator = {
   type t;
+  external create: unit => t = "$SymbolIterator" [@@bs.new]; 
 };
 let module $SymbolMatch = {
   type t;
+  external create: unit => t = "$SymbolMatch" [@@bs.new]; 
 };
 let module $SymbolReplace = {
   type t;
+  external create: unit => t = "$SymbolReplace" [@@bs.new]; 
 };
 let module $SymbolSearch = {
   type t;
+  external create: unit => t = "$SymbolSearch" [@@bs.new]; 
 };
 let module $SymbolSpecies = {
   type t;
+  external create: unit => t = "$SymbolSpecies" [@@bs.new]; 
 };
 let module $SymbolSplit = {
   type t;
+  external create: unit => t = "$SymbolSplit" [@@bs.new]; 
 };
 let module $SymbolToPrimitive = {
   type t;
+  external create: unit => t = "$SymbolToPrimitive" [@@bs.new]; 
 };
 let module $SymbolToStringTag = {
   type t;
+  external create: unit => t = "$SymbolToStringTag" [@@bs.new]; 
 };
 let module $SymbolUnscopables = {
   type t;
+  external create: unit => t = "$SymbolUnscopables" [@@bs.new]; 
 };
 let module Symbol = {
   type t;
@@ -96,6 +107,7 @@ let module Symbol = {
 };
 let module Function = {
   type t;
+  external create: unit => t = "Function" [@@bs.new]; 
   external apply: Function$Prototype$Apply = "" [@@bs.get];
   external bind: Function$Prototype$Bind = "" [@@bs.get];
   external call: Function$Prototype$Call = "" [@@bs.get];
@@ -141,41 +153,41 @@ let module Math = {
   external _PI: float = "Math.PI" [@@bs.val];
   external _SQRT1_2: float = "Math.SQRT1_2" [@@bs.val];
   external _SQRT2: float = "Math.SQRT2" [@@bs.val];
-  external abs: float => float = "Math.abs" [@@bs.val];
-  external acos: float => float = "Math.acos" [@@bs.val];
-  external acosh: float => float = "Math.acosh" [@@bs.val];
-  external asin: float => float = "Math.asin" [@@bs.val];
-  external asinh: float => float = "Math.asinh" [@@bs.val];
-  external atan: float => float = "Math.atan" [@@bs.val];
-  external atan2: float => float => float = "Math.atan2" [@@bs.val];
-  external atanh: float => float = "Math.atanh" [@@bs.val];
-  external cbrt: float => float = "Math.cbrt" [@@bs.val];
-  external ceil: float => float = "Math.ceil" [@@bs.val];
-  external clz32: float => float = "Math.clz32" [@@bs.val];
-  external cos: float => float = "Math.cos" [@@bs.val];
-  external cosh: float => float = "Math.cosh" [@@bs.val];
-  external exp: float => float = "Math.exp" [@@bs.val];
-  external expm1: float => float = "Math.expm1" [@@bs.val];
-  external floor: float => float = "Math.floor" [@@bs.val];
-  external fround: float => float = "Math.fround" [@@bs.val];
-  external hypot: array 'rest => float = "Math.hypot" [@@bs.val] [@@bs.splice];
-  external imul: float => float => float = "Math.imul" [@@bs.val];
-  external log: float => float = "Math.log" [@@bs.val];
-  external log10: float => float = "Math.log10" [@@bs.val];
-  external log1p: float => float = "Math.log1p" [@@bs.val];
-  external log2: float => float = "Math.log2" [@@bs.val];
-  external max: array 'rest => float = "Math.max" [@@bs.val] [@@bs.splice];
-  external min: array 'rest => float = "Math.min" [@@bs.val] [@@bs.splice];
-  external pow: float => float => float = "Math.pow" [@@bs.val];
-  external random: unit => float = "Math.random" [@@bs.val];
-  external round: float => float = "Math.round" [@@bs.val];
-  external sign: float => float = "Math.sign" [@@bs.val];
-  external sin: float => float = "Math.sin" [@@bs.val];
-  external sinh: float => float = "Math.sinh" [@@bs.val];
-  external sqrt: float => float = "Math.sqrt" [@@bs.val];
-  external tan: float => float = "Math.tan" [@@bs.val];
-  external tanh: float => float = "Math.tanh" [@@bs.val];
-  external trunc: float => float = "Math.trunc" [@@bs.val];
+  external abs: float => float = "Math.abs" [@@bs.send];
+  external acos: float => float = "Math.acos" [@@bs.send];
+  external acosh: float => float = "Math.acosh" [@@bs.send];
+  external asin: float => float = "Math.asin" [@@bs.send];
+  external asinh: float => float = "Math.asinh" [@@bs.send];
+  external atan: float => float = "Math.atan" [@@bs.send];
+  external atan2: float => float => float = "Math.atan2" [@@bs.send];
+  external atanh: float => float = "Math.atanh" [@@bs.send];
+  external cbrt: float => float = "Math.cbrt" [@@bs.send];
+  external ceil: float => float = "Math.ceil" [@@bs.send];
+  external clz32: float => float = "Math.clz32" [@@bs.send];
+  external cos: float => float = "Math.cos" [@@bs.send];
+  external cosh: float => float = "Math.cosh" [@@bs.send];
+  external exp: float => float = "Math.exp" [@@bs.send];
+  external expm1: float => float = "Math.expm1" [@@bs.send];
+  external floor: float => float = "Math.floor" [@@bs.send];
+  external fround: float => float = "Math.fround" [@@bs.send];
+  external hypot: array 'rest => float = "Math.hypot" [@@bs.send] [@@bs.splice];
+  external imul: float => float => float = "Math.imul" [@@bs.send];
+  external log: float => float = "Math.log" [@@bs.send];
+  external log10: float => float = "Math.log10" [@@bs.send];
+  external log1p: float => float = "Math.log1p" [@@bs.send];
+  external log2: float => float = "Math.log2" [@@bs.send];
+  external max: array 'rest => float = "Math.max" [@@bs.send] [@@bs.splice];
+  external min: array 'rest => float = "Math.min" [@@bs.send] [@@bs.splice];
+  external pow: float => float => float = "Math.pow" [@@bs.send];
+  external random: unit => float = "Math.random" [@@bs.send];
+  external round: float => float = "Math.round" [@@bs.send];
+  external sign: float => float = "Math.sign" [@@bs.send];
+  external sin: float => float = "Math.sin" [@@bs.send];
+  external sinh: float => float = "Math.sinh" [@@bs.send];
+  external sqrt: float => float = "Math.sqrt" [@@bs.send];
+  external tan: float => float = "Math.tan" [@@bs.send];
+  external tanh: float => float = "Math.tanh" [@@bs.send];
+  external trunc: float => float = "Math.trunc" [@@bs.send];
 };
 let module Array = {
   type t;
@@ -331,6 +343,7 @@ let module Date = {
 };
 let module CallSite = {
   type t;
+  external create: unit => t = "CallSite" [@@bs.new]; 
   external getThis: t => unit => 'a = "" [@@bs.send];
   external getTypeName: t => unit => string = "" [@@bs.send];
   external getFunction: t => unit => TODO = "" [@@bs.send];
@@ -359,24 +372,31 @@ let module Error = {
 };
 let module EvalError = {
   type t;
+  external create: unit => t = "EvalError" [@@bs.new]; 
 };
 let module RangeError = {
   type t;
+  external create: unit => t = "RangeError" [@@bs.new]; 
 };
 let module ReferenceError = {
   type t;
+  external create: unit => t = "ReferenceError" [@@bs.new]; 
 };
 let module SyntaxError = {
   type t;
+  external create: unit => t = "SyntaxError" [@@bs.new]; 
 };
 let module TypeError = {
   type t;
+  external create: unit => t = "TypeError" [@@bs.new]; 
 };
 let module URIError = {
   type t;
+  external create: unit => t = "URIError" [@@bs.new]; 
 };
 let module JSON = {
   type t;
+  external create: unit => t = "JSON" [@@bs.new]; 
   external parse: string => reviver::(option 'a => 'a => 'a) => 'a = "" [@@bs.val];
   external stringify: 'a => replacer::(option TODO) => space::(option TODO) => string = "" [@@bs.val];
 };
@@ -385,6 +405,7 @@ type TODO;
 type TODO;
 let module Map = {
   type t;
+  external create: unit => t = "Map" [@@bs.new]; 
   external _@@iterator: t => unit => Iterator = "" [@@bs.send];
   external constructor: t => TODO => unit = "" [@@bs.send];
   external clear: t => unit => unit = "" [@@bs.send];
@@ -400,6 +421,7 @@ let module Map = {
 };
 let module WeakMap = {
   type t;
+  external create: unit => t = "WeakMap" [@@bs.new]; 
   external clear: t => unit => unit = "" [@@bs.send];
   external delete: t => K => bool = "" [@@bs.send];
   external get: t => K => V = "" [@@bs.send];
@@ -408,6 +430,7 @@ let module WeakMap = {
 };
 let module Set = {
   type t;
+  external create: unit => t = "Set" [@@bs.new]; 
   external _@@iterator: t => unit => Iterator = "" [@@bs.send];
   external add: t => T => Set = "" [@@bs.send];
   external clear: t => unit => unit = "" [@@bs.send];
@@ -421,6 +444,7 @@ let module Set = {
 };
 let module WeakSet = {
   type t;
+  external create: unit => t = "WeakSet" [@@bs.new]; 
   external constructor: t => iterable::(option Iterable) => unit = "" [@@bs.send];
   external add: t => T => WeakSet = "" [@@bs.send];
   external delete: t => T => bool = "" [@@bs.send];
@@ -428,6 +452,7 @@ let module WeakSet = {
 };
 let module Promise = {
   type t;
+  external create: unit => t = "Promise" [@@bs.new]; 
   external constructor: t => TODO => unit => 'a => unit => 'a => unit = "" [@@bs.send];
   external then: t => onFulfill::(option R => TODO) => onReject::(option 'a => TODO) => Promise = "" [@@bs.send];
   external catch: t => onReject::(option 'a => TODO) => Promise = "" [@@bs.send];
@@ -439,6 +464,7 @@ let module Promise = {
 external _$await: TODO => T = "$await" [@@bs.val];
 let module ArrayBuffer = {
   type t;
+  external create: unit => t = "ArrayBuffer" [@@bs.new]; 
   external isView: 'a => bool = "" [@@bs.val];
   external constructor: t => float => unit = "" [@@bs.send];
   external byteLength: float = "" [@@bs.get];
@@ -447,6 +473,7 @@ let module ArrayBuffer = {
 type TODO;
 let module $TypedArray = {
   type t;
+  external create: unit => t = "$TypedArray" [@@bs.new]; 
   external _BYTES_PER_ELEMENT: float = "" [@@bs.val];
   external from: Iterable => this = "" [@@bs.val];
   external of: array 'rest => this = "" [@@bs.val] [@@bs.splice];
@@ -487,33 +514,43 @@ let module $TypedArray = {
 };
 let module Int8Array = {
   type t;
+  external create: unit => t = "Int8Array" [@@bs.new]; 
 };
 let module Uint8Array = {
   type t;
+  external create: unit => t = "Uint8Array" [@@bs.new]; 
 };
 let module Uint8ClampedArray = {
   type t;
+  external create: unit => t = "Uint8ClampedArray" [@@bs.new]; 
 };
 let module Int16Array = {
   type t;
+  external create: unit => t = "Int16Array" [@@bs.new]; 
 };
 let module Uint16Array = {
   type t;
+  external create: unit => t = "Uint16Array" [@@bs.new]; 
 };
 let module Int32Array = {
   type t;
+  external create: unit => t = "Int32Array" [@@bs.new]; 
 };
 let module Uint32Array = {
   type t;
+  external create: unit => t = "Uint32Array" [@@bs.new]; 
 };
 let module Float32Array = {
   type t;
+  external create: unit => t = "Float32Array" [@@bs.new]; 
 };
 let module Float64Array = {
   type t;
+  external create: unit => t = "Float64Array" [@@bs.new]; 
 };
 let module DataView = {
   type t;
+  external create: unit => t = "DataView" [@@bs.new]; 
   external constructor: t => ArrayBuffer => byteOffset::(option float) => length::(option float) => unit = "" [@@bs.send];
   external buffer: ArrayBuffer = "" [@@bs.get];
   external byteLength: float = "" [@@bs.get];
@@ -543,6 +580,7 @@ external setTimeout: 'a => ms::(option float) => array 'rest => float = "setTime
 external setInterval: 'a => ms::(option float) => array 'rest => float = "setInterval" [@@bs.val];
 let module Reflect = {
   type t;
+  external create: unit => t = "Reflect" [@@bs.new]; 
   external apply: (unit => unit) => thisArg::(option 'a) => argumentsList::(option Array) => 'a = "" [@@bs.val];
   external construct: (unit => unit) => argumentsList::(option Array) => newTarget::(option (unit => unit)) => 'a = "" [@@bs.val];
   external defineProperty: 'a => 'a => 'a => bool = "" [@@bs.val];
@@ -561,13 +599,14 @@ type TODO;
 type TODO;
 let module Proxy = {
   type t;
+  external create: unit => t = "Proxy" [@@bs.new]; 
   external constructor: t => T => Proxy$traps => T = "" [@@bs.send];
   external revocable: T => Proxy$traps => Proxy$revocable = "" [@@bs.val];
 };
 external global: 'a = "global" [@@bs.val];
 let module Module = {
   external exports: 'a = "module.exports" [@@bs.val];
-  external require: string => 'a = "module.require" [@@bs.val];
+  external require: string => 'a = "module.require" [@@bs.send];
   external id: string = "module.id" [@@bs.val];
   external filename: string = "module.filename" [@@bs.val];
   external loaded: bool = "module.loaded" [@@bs.val];
@@ -577,25 +616,25 @@ let module Module = {
 external require: string => 'a = "require" [@@bs.val];
 external exports: 'a = "exports" [@@bs.val];
 let module Console = {
-  external _assert: 'a => array 'rest => unit = "console.assert" [@@bs.val] [@@bs.splice];
-  external clear: unit => unit = "console.clear" [@@bs.val];
-  external count: string => unit = "console.count" [@@bs.val];
-  external debug: array 'rest => unit = "console.debug" [@@bs.val] [@@bs.splice];
-  external dir: array 'rest => unit = "console.dir" [@@bs.val] [@@bs.splice];
-  external dirxml: array 'rest => unit = "console.dirxml" [@@bs.val] [@@bs.splice];
-  external error: array 'rest => unit = "console.error" [@@bs.val] [@@bs.splice];
-  external __exception: array 'rest => unit = "console._exception" [@@bs.val] [@@bs.splice];
-  external group: array 'rest => unit = "console.group" [@@bs.val] [@@bs.splice];
-  external groupCollapsed: array 'rest => unit = "console.groupCollapsed" [@@bs.val] [@@bs.splice];
-  external groupEnd: unit => unit = "console.groupEnd" [@@bs.val];
-  external info: array 'rest => unit = "console.info" [@@bs.val] [@@bs.splice];
-  external log: array 'rest => unit = "console.log" [@@bs.val] [@@bs.splice];
-  external profile: string => unit = "console.profile" [@@bs.val];
-  external profileEnd: unit => unit = "console.profileEnd" [@@bs.val];
-  external table: TODO => unit = "console.table" [@@bs.val];
-  external time: string => unit = "console.time" [@@bs.val];
-  external timeEnd: string => unit = "console.timeEnd" [@@bs.val];
-  external timeStamp: label::(option string) => unit = "console.timeStamp" [@@bs.val];
-  external trace: array 'rest => unit = "console.trace" [@@bs.val] [@@bs.splice];
-  external warn: array 'rest => unit = "console.warn" [@@bs.val] [@@bs.splice];
+  external _assert: 'a => array 'rest => unit = "console.assert" [@@bs.send] [@@bs.splice];
+  external clear: unit => unit = "console.clear" [@@bs.send];
+  external count: string => unit = "console.count" [@@bs.send];
+  external debug: array 'rest => unit = "console.debug" [@@bs.send] [@@bs.splice];
+  external dir: array 'rest => unit = "console.dir" [@@bs.send] [@@bs.splice];
+  external dirxml: array 'rest => unit = "console.dirxml" [@@bs.send] [@@bs.splice];
+  external error: array 'rest => unit = "console.error" [@@bs.send] [@@bs.splice];
+  external __exception: array 'rest => unit = "console._exception" [@@bs.send] [@@bs.splice];
+  external group: array 'rest => unit = "console.group" [@@bs.send] [@@bs.splice];
+  external groupCollapsed: array 'rest => unit = "console.groupCollapsed" [@@bs.send] [@@bs.splice];
+  external groupEnd: unit => unit = "console.groupEnd" [@@bs.send];
+  external info: array 'rest => unit = "console.info" [@@bs.send] [@@bs.splice];
+  external log: array 'rest => unit = "console.log" [@@bs.send] [@@bs.splice];
+  external profile: string => unit = "console.profile" [@@bs.send];
+  external profileEnd: unit => unit = "console.profileEnd" [@@bs.send];
+  external table: TODO => unit = "console.table" [@@bs.send];
+  external time: string => unit = "console.time" [@@bs.send];
+  external timeEnd: string => unit = "console.timeEnd" [@@bs.send];
+  external timeStamp: label::(option string) => unit = "console.timeStamp" [@@bs.send];
+  external trace: array 'rest => unit = "console.trace" [@@bs.send] [@@bs.splice];
+  external warn: array 'rest => unit = "console.warn" [@@bs.send] [@@bs.splice];
 };

@@ -234,7 +234,7 @@ and process_class moduleName (obj: Ast.Type.Object.t) => {
       }
     | _ => result
     }
-  and process_call_properties moduleName properties result =>
+  and process_call_properties moduleName properties result hasCreateFn =>
     Ast.Type.(
       switch properties {
       | [(_, {Ast.Type.Object.CallProperty.value: value, _}), ...tail] =>
@@ -248,16 +248,22 @@ and process_class moduleName (obj: Ast.Type.Object.t) => {
             "  external create:" ^
             (process_function params rest) ^ (process_type returnType) ^ " = \"" ^ moduleName ^ "\" [@@bs.new]; \n"
           )
-      | [] => result
+          true
+      | [] =>  if (hasCreateFn === false) {
+          result ^ "  external create: unit => t = \"" ^ moduleName ^ "\" [@@bs.new]; \n"
+        }
+        else {
+          result
+        }
       }
     );
-  process_call_properties moduleName callProperties "" ^ process_properties properties ""
+  process_call_properties moduleName callProperties "" false ^ process_properties properties ""
 }
 and process_object moduleName (obj: Ast.Type.Object.t) => {
   let {Ast.Type.Object.properties: properties, _} = obj;
   let rec process_properties properties result =>
     switch properties {
-    | [(_, {Ast.Type.Object.Property.key: key, value, _}), ...tail] =>
+    | [(_, {Ast.Type.Object.Property.key: key, value, static, _method, _}), ...tail] =>
       switch key {
       | Ast.Expression.Object.Property.Literal _ {Ast.Literal.value: Ast.Literal.String name, _}
         [@implicit_arity]
@@ -269,19 +275,31 @@ and process_object moduleName (obj: Ast.Type.Object.t) => {
           } else {
             ""
           };
+          let (t, bsPPX) =
+            if static {
+              ("", "[@@bs.val]")
+            }
+            else if (_method) {
+              let a = getTypeName moduleName;
+              (a ^ " => ", "[@@bs.send]")
+            }
+            else {
+              ("", "[@@bs.val]");
+            };
         process_properties
           tail
           (
             if (isLiteral value) {
               result ^ "  let " ^ fixReservedNames (fixUpperCase name) ^ " = " ^ process_type value ^ ";\n";
             }
+
             else {
               result ^
               "  external " ^
               fixReservedNames (fixUpperCase name) ^
               ": " ^
               process_type value ^
-              " = \"" ^ moduleName ^ "." ^ name ^ "\" [@@bs.val]" ^ splice ^ ";\n"
+              " = \"" ^ moduleName ^ "." ^ name ^ "\" " ^ bsPPX ^ splice ^ ";\n"
             }
           )
       | _ => assert false

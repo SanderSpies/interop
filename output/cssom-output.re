@@ -1,5 +1,6 @@
 let module StyleSheet = {
   type t;
+  external create: unit => t = "StyleSheet" [@@bs.new]; 
   external disabled: bool = "" [@@bs.get];
   external href: string = "" [@@bs.get];
   external media: MediaList = "" [@@bs.get];
@@ -10,10 +11,12 @@ let module StyleSheet = {
 };
 let module StyleSheetList = {
   type t;
+  external create: unit => t = "StyleSheetList" [@@bs.new]; 
   external length: float = "" [@@bs.get];
 };
 let module MediaList = {
   type t;
+  external create: unit => t = "MediaList" [@@bs.new]; 
   external mediaText: string = "" [@@bs.get];
   external length: float = "" [@@bs.get];
   external item: t => float => TODO = "" [@@bs.send];
@@ -22,6 +25,7 @@ let module MediaList = {
 };
 let module CSSStyleSheet = {
   type t;
+  external create: unit => t = "CSSStyleSheet" [@@bs.new]; 
   external cssRules: CSSRuleList = "" [@@bs.get];
   external ownerRule: TODO = "" [@@bs.get];
   external deleteRule: t => float => unit = "" [@@bs.send];
@@ -29,6 +33,7 @@ let module CSSStyleSheet = {
 };
 let module CSSRule = {
   type t;
+  external create: unit => t = "CSSRule" [@@bs.new]; 
   external cssText: string = "" [@@bs.get];
   external parentRule: TODO = "" [@@bs.get];
   external parentStyleSheet: TODO = "" [@@bs.get];
@@ -52,11 +57,13 @@ let module CSSRule = {
 };
 let module CSSRuleList = {
   type t;
+  external create: unit => t = "CSSRuleList" [@@bs.new]; 
   external length: float = "" [@@bs.get];
   external item: t => float => TODO = "" [@@bs.send];
 };
 let module CSSStyleDeclaration = {
   type t;
+  external create: unit => t = "CSSStyleDeclaration" [@@bs.new]; 
   external alignContent: string = "" [@@bs.get];
   external alignItems: string = "" [@@bs.get];
   external alignSelf: string = "" [@@bs.get];
@@ -348,6 +355,7 @@ let module CSSStyleDeclaration = {
 };
 let module TransitionEvent = {
   type t;
+  external create: unit => t = "TransitionEvent" [@@bs.new]; 
   external elapsedTime: float = "" [@@bs.get];
   external pseudoElement: string = "" [@@bs.get];
   external propertyName: string = "" [@@bs.get];
