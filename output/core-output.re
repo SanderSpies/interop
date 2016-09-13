@@ -82,7 +82,7 @@ let module Symbol = {
   external isConcatSpreadable: $SymboIsConcatSpreadable = "" [@@bs.val];
   external iterator: string = "" [@@bs.val];
   external keyFor: Symbol => TODO = "" [@@bs.val];
-  external length: TODO = "" [@@bs.val];
+  let length = 0.;
   external match: $SymbolMatch = "" [@@bs.val];
   external replace: $SymbolReplace = "" [@@bs.val];
   external search: $SymbolSearch = "" [@@bs.val];
@@ -96,13 +96,13 @@ let module Symbol = {
 };
 let module Function = {
   type t;
-  external apply: t => Function$Prototype$Apply = "" [@@bs.send];
-  external bind: t => Function$Prototype$Bind = "" [@@bs.send];
-  external call: t => Function$Prototype$Call = "" [@@bs.send];
-  external arguments: t => 'a = "" [@@bs.send];
-  external caller: t => TODO = "" [@@bs.send];
-  external length: t => float = "" [@@bs.send];
-  external name: t => string = "" [@@bs.send];
+  external apply: Function$Prototype$Apply = "" [@@bs.get];
+  external bind: Function$Prototype$Bind = "" [@@bs.get];
+  external call: Function$Prototype$Call = "" [@@bs.get];
+  external arguments: 'a = "" [@@bs.get];
+  external caller: TODO = "" [@@bs.get];
+  external length: float = "" [@@bs.get];
+  external name: string = "" [@@bs.get];
 };
 let module Boolean = {
   type t;
@@ -212,7 +212,7 @@ let module Array = {
   external splice: t => float => deleteCount::(option float) => array 'rest => Array = "" [@@bs.send] [@@bs.splice];
   external unshift: t => array 'rest => float = "" [@@bs.send] [@@bs.splice];
   external values: t => unit => Iterator = "" [@@bs.send];
-  external length: t => float = "" [@@bs.send];
+  external length: float = "" [@@bs.get];
   external isArray: 'a => bool = "" [@@bs.val];
   external from: Iterable => A => float => B => thisArg::(option 'a) => Array = "" [@@bs.val];
   external from: Iterable => unit => Array = "" [@@bs.val];
@@ -255,7 +255,7 @@ let module String = {
   external trimLeft: t => unit => string = "" [@@bs.send];
   external trimRight: t => unit => string = "" [@@bs.send];
   external valueOf: t => unit => string = "" [@@bs.send];
-  external length: t => float = "" [@@bs.send];
+  external length: float = "" [@@bs.get];
   external fromCharCode: array 'rest => string = "" [@@bs.val] [@@bs.splice];
   external fromCodePoint: array 'rest => string = "" [@@bs.val] [@@bs.splice];
   external raw: string => string = "" [@@bs.val];
@@ -268,14 +268,14 @@ let module RegExp = {
   external compile: t => unit => RegExp = "" [@@bs.send];
   external constructor: t => TODO => flags::(option RegExp$flags) => RegExp = "" [@@bs.send];
   external exec: t => string => 'a = "" [@@bs.send];
-  external flags: t => string = "" [@@bs.send];
-  external global: t => bool = "" [@@bs.send];
-  external ignoreCase: t => bool = "" [@@bs.send];
-  external lastIndex: t => float = "" [@@bs.send];
-  external multiline: t => bool = "" [@@bs.send];
-  external source: t => string = "" [@@bs.send];
-  external sticky: t => bool = "" [@@bs.send];
-  external unicode: t => bool = "" [@@bs.send];
+  external flags: string = "" [@@bs.get];
+  external global: bool = "" [@@bs.get];
+  external ignoreCase: bool = "" [@@bs.get];
+  external lastIndex: float = "" [@@bs.get];
+  external multiline: bool = "" [@@bs.get];
+  external source: string = "" [@@bs.get];
+  external sticky: bool = "" [@@bs.get];
+  external unicode: bool = "" [@@bs.get];
   external test: t => string => bool = "" [@@bs.send];
   external toString: t => unit => string = "" [@@bs.send];
 };
@@ -350,10 +350,10 @@ let module CallSite = {
 let module Error = {
   type t;
   external create:message::(option string) => Error = "Error" [@@bs.new]; 
-  external name: t => string = "" [@@bs.send];
-  external message: t => string = "" [@@bs.send];
-  external stack: t => string = "" [@@bs.send];
-  external captureStackTrace: Object => constructor::(option Function) => unit = "" [@@bs.val];
+  external name: string = "" [@@bs.get];
+  external message: string = "" [@@bs.get];
+  external stack: string = "" [@@bs.get];
+  external captureStackTrace: Object => constructor::(option (unit => unit)) => unit = "" [@@bs.val];
   external stackTraceLimit: float = "" [@@bs.val];
   external prepareStackTrace: Error => TODO => 'a = "" [@@bs.val];
 };
@@ -395,7 +395,7 @@ let module Map = {
   external has: t => K => bool = "" [@@bs.send];
   external keys: t => unit => Iterator = "" [@@bs.send];
   external set: t => K => V => Map = "" [@@bs.send];
-  external size: t => float = "" [@@bs.send];
+  external size: float = "" [@@bs.get];
   external values: t => unit => Iterator = "" [@@bs.send];
 };
 let module WeakMap = {
@@ -416,7 +416,7 @@ let module Set = {
   external forEach: t => T => T => Set => 'a => thisArg::(option 'a) => unit = "" [@@bs.send];
   external has: t => T => bool = "" [@@bs.send];
   external keys: t => unit => Iterator = "" [@@bs.send];
-  external size: t => float = "" [@@bs.send];
+  external size: float = "" [@@bs.get];
   external values: t => unit => Iterator = "" [@@bs.send];
 };
 let module WeakSet = {
@@ -441,7 +441,7 @@ let module ArrayBuffer = {
   type t;
   external isView: 'a => bool = "" [@@bs.val];
   external constructor: t => float => unit = "" [@@bs.send];
-  external byteLength: t => float = "" [@@bs.send];
+  external byteLength: float = "" [@@bs.get];
   external slice: t => float => end::(option float) => this = "" [@@bs.send];
 };
 type TODO;
@@ -455,10 +455,10 @@ let module $TypedArray = {
   external constructor: t => Iterable => unit = "" [@@bs.send];
   external constructor: t => ArrayBuffer => byteOffset::(option float) => length::(option float) => unit = "" [@@bs.send];
   external _@@iterator: t => unit => Iterator = "" [@@bs.send];
-  external buffer: t => ArrayBuffer = "" [@@bs.send];
-  external byteLength: t => float = "" [@@bs.send];
-  external byteOffset: t => float = "" [@@bs.send];
-  external length: t => float = "" [@@bs.send];
+  external buffer: ArrayBuffer = "" [@@bs.get];
+  external byteLength: float = "" [@@bs.get];
+  external byteOffset: float = "" [@@bs.get];
+  external length: float = "" [@@bs.get];
   external copyWithin: t => float => float => end::(option float) => unit = "" [@@bs.send];
   external entries: t => unit => Iterator = "" [@@bs.send];
   external every: t => float => float => this => 'a => thisArg::(option 'a) => bool = "" [@@bs.send];
@@ -515,9 +515,9 @@ let module Float64Array = {
 let module DataView = {
   type t;
   external constructor: t => ArrayBuffer => byteOffset::(option float) => length::(option float) => unit = "" [@@bs.send];
-  external buffer: t => ArrayBuffer = "" [@@bs.send];
-  external byteLength: t => float = "" [@@bs.send];
-  external byteOffset: t => float = "" [@@bs.send];
+  external buffer: ArrayBuffer = "" [@@bs.get];
+  external byteLength: float = "" [@@bs.get];
+  external byteOffset: float = "" [@@bs.get];
   external getInt8: t => float => float = "" [@@bs.send];
   external getUint8: t => float => float = "" [@@bs.send];
   external getInt16: t => float => littleEndian::(option bool) => float = "" [@@bs.send];
@@ -543,8 +543,8 @@ external setTimeout: 'a => ms::(option float) => array 'rest => float = "setTime
 external setInterval: 'a => ms::(option float) => array 'rest => float = "setInterval" [@@bs.val];
 let module Reflect = {
   type t;
-  external apply: Function => thisArg::(option 'a) => argumentsList::(option Array) => 'a = "" [@@bs.val];
-  external construct: Function => argumentsList::(option Array) => newTarget::(option Function) => 'a = "" [@@bs.val];
+  external apply: (unit => unit) => thisArg::(option 'a) => argumentsList::(option Array) => 'a = "" [@@bs.val];
+  external construct: (unit => unit) => argumentsList::(option Array) => newTarget::(option (unit => unit)) => 'a = "" [@@bs.val];
   external defineProperty: 'a => 'a => 'a => bool = "" [@@bs.val];
   external deleteProperty: 'a => 'a => bool = "" [@@bs.val];
   external get: 'a => 'a => receiver::(option 'a) => 'a = "" [@@bs.val];

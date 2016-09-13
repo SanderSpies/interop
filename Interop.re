@@ -17,7 +17,7 @@ let fixUpperCase str =>
     str
   };
 
-let reservedNames = ["assert", "exception"];
+let reservedNames = ["assert", "exception", "type"];
 
 let fixReservedNames str =>
   if (List.exists (fun a => a == str) reservedNames) {
@@ -40,7 +40,14 @@ let getTypeName moduleName =>
   | "Number" => "float"
   | _ => "t"
   };
-
+let isLiteral value => {
+  Ast.Type.(switch value {
+  | (_, StringLiteral _)
+  | (_, BooleanLiteral _)
+  | (_, NumberLiteral _) => true
+  | _ => false
+  });
+};
 let rec process_type typeAnnotation =>
   Ast.Type.(
     switch typeAnnotation {
@@ -49,12 +56,16 @@ let rec process_type typeAnnotation =>
     | (_, Number) => "float"
     | (_, Boolean) => "bool"
     | (_, Any) => "'a"
+    | (_, StringLiteral {StringLiteral.value, _}) => "\"" ^ value ^ "\""
+    | (_, NumberLiteral {NumberLiteral.value, _}) => "" ^ string_of_float(value) ^ ""
+    | (_, BooleanLiteral {BooleanLiteral.value, _}) => "" ^ string_of_bool(value) ^ ""
     | (_, Generic {Generic.id: Generic.Identifier.Unqualified id, _}) =>
       let (_, {Ast.Identifier.name: name, _}) = id;
       switch name {
       | "mixed" => "'a" /* TODO: b c d e etc. */
       | "Boolean" => "bool"
       | "Number" => "float"
+      | "Function" => "(unit => unit)"
       | _ => name
       }
     | (
@@ -186,7 +197,7 @@ and process_class moduleName (obj: Ast.Type.Object.t) => {
   let {Ast.Type.Object.properties: properties, callProperties, _} = obj;
   let rec process_properties properties result =>
     switch properties {
-    | [(_, {Ast.Type.Object.Property.key: key, value, static, _}), ...tail] =>
+    | [(_, {Ast.Type.Object.Property.key: key, value, static, _method,_}), ...tail] =>
       switch key {
       | Ast.Expression.Object.Property.Literal _ {Ast.Literal.value: Ast.Literal.String name, _}
         [@implicit_arity]
@@ -201,17 +212,23 @@ and process_class moduleName (obj: Ast.Type.Object.t) => {
         let (t, bsPPX) =
           if static {
             ("", "[@@bs.val]")
-          } else {
+          }
+          else if (_method) {
             let a = getTypeName moduleName;
             (a ^ " => ", "[@@bs.send]")
+          }
+          else {
+            ("", "[@@bs.get]");
           };
         process_properties
           tail
           (
-            result ^
-            "  external " ^
-            fixReservedNames (fixUpperCase name) ^
-            ": " ^ t ^ process_type value ^ " = \"\" " ^ bsPPX ^ splice ^ ";\n"
+            if (isLiteral value) {
+              result ^ "  let " ^ fixReservedNames (fixUpperCase name) ^ " = " ^ process_type value ^ ";\n";
+            }
+            else {
+              result ^ "  external " ^ fixReservedNames (fixUpperCase name) ^ ": " ^ t ^ process_type value ^ " = \"\" " ^ bsPPX ^ splice ^ ";\n";
+            }
           )
       | _ => assert false
       }
@@ -255,12 +272,17 @@ and process_object moduleName (obj: Ast.Type.Object.t) => {
         process_properties
           tail
           (
-            result ^
-            "  external " ^
-            fixReservedNames (fixUpperCase name) ^
-            ": " ^
-            process_type value ^
-            " = \"" ^ moduleName ^ "." ^ name ^ "\" [@@bs.val]" ^ splice ^ ";\n"
+            if (isLiteral value) {
+              result ^ "  let " ^ fixReservedNames (fixUpperCase name) ^ " = " ^ process_type value ^ ";\n";
+            }
+            else {
+              result ^
+              "  external " ^
+              fixReservedNames (fixUpperCase name) ^
+              ": " ^
+              process_type value ^
+              " = \"" ^ moduleName ^ "." ^ name ^ "\" [@@bs.val]" ^ splice ^ ";\n"
+            }
           )
       | _ => assert false
       }
