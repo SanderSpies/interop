@@ -48,6 +48,13 @@ let isLiteral value => {
   | _ => false
   });
 };
+let isObject value => {
+  Ast.Type.(switch value {
+  | (_, Object _) => true
+  | _ => false
+  });
+};
+
 let rec process_type typeAnnotation =>
   Ast.Type.(
     switch typeAnnotation {
@@ -59,14 +66,33 @@ let rec process_type typeAnnotation =>
     | (_, StringLiteral {StringLiteral.value, _}) => "\"" ^ value ^ "\""
     | (_, NumberLiteral {NumberLiteral.value, _}) => "" ^ string_of_float(value) ^ ""
     | (_, BooleanLiteral {BooleanLiteral.value, _}) => "" ^ string_of_bool(value) ^ ""
-    | (_, Generic {Generic.id: Generic.Identifier.Unqualified id, _}) =>
+    | (_, Generic {Generic.id: Generic.Identifier.Unqualified id, typeParameters}) =>
       let (_, {Ast.Identifier.name: name, _}) = id;
       switch name {
       | "mixed" => "'a" /* TODO: b c d e etc. */
       | "Boolean" => "bool"
       | "Number" => "float"
       | "Function" => "(unit => unit)"
-      | _ => name
+      | "Array" => {
+        switch typeParameters {
+        | Some (_, {ParameterInstantiation.params, _}) => {
+          if (List.length params === 1) {
+            let a = (List.nth params 0);
+            Ast.Type.(switch a {
+            | (_, String) => "array string"
+            | (_, Number) => "array float"
+            | (_, Boolean) => "array bool"
+            | _ => "array TODO";
+            });
+          }
+          else {
+            "array something"
+          }
+        }
+        | _ => "array unit"
+        };
+      }
+      | _ => name ^ ".t"
       }
     | (
         _,
@@ -78,6 +104,7 @@ let rec process_type typeAnnotation =>
         }
       ) =>
       "(" ^ process_function params rest ^ process_type returnType ^ ")"
+
     | _ => "TODO" /* TODO support more! */
     }
   )
@@ -118,9 +145,10 @@ and process_function params rest => {
 and findClass statements type_ => {
   Ast.Statement.(
     switch statements {
+    | [(_, InterfaceDeclaration {Interface.id: id, body, _}), ...tail]
     | [(_, DeclareClass {Interface.id: id, body, _}), ...tail] => {
         let (_, {Ast.Identifier.name: name, _}) = id;
-        if (name == type_) {
+        if (name ^ ".t" == type_) {
           Some body
         } else {
           findClass tail type_
@@ -174,6 +202,7 @@ and create_interop statements allStatements =>
       };
       print_newline ();
       create_interop tail  allStatements
+    | [(_, InterfaceDeclaration {Interface.id: id, body, _}), ...tail]
     | [(_, DeclareClass {Interface.id: id, body, _}), ...tail] =>
       let (_, {Ast.Identifier.name: name, _}) = id;
       let (_, obj) = body;
@@ -218,7 +247,7 @@ and process_class moduleName (obj: Ast.Type.Object.t) => {
             (a ^ " => ", "[@@bs.send]")
           }
           else {
-            ("", "[@@bs.get]");
+            ("t => ", "[@@bs.get]");
           };
         process_properties
           tail
@@ -227,7 +256,14 @@ and process_class moduleName (obj: Ast.Type.Object.t) => {
               result ^ "  let " ^ fixReservedNames (fixUpperCase name) ^ " = " ^ process_type value ^ ";\n";
             }
             else {
-              result ^ "  external " ^ fixReservedNames (fixUpperCase name) ^ ": " ^ t ^ process_type value ^ " = \"\" " ^ bsPPX ^ splice ^ ";\n";
+              Ast.Type.(switch value {
+                | (_, Object obj) => {
+                  result ^ "  let module " ^ String.capitalize name ^ " = { \n" ^
+                  (process_object (moduleName ^ "." ^ name) obj)
+                  ^ "};\n"
+                };
+                | _ => result ^ "  external " ^ fixReservedNames (fixUpperCase name) ^ ": " ^ t ^ process_type value ^ " = \"\" " ^ bsPPX ^ splice ^ ";\n";
+              })
             }
           )
       | _ => assert false
@@ -239,7 +275,6 @@ and process_class moduleName (obj: Ast.Type.Object.t) => {
       switch properties {
       | [(_, {Ast.Type.Object.CallProperty.value: value, _}), ...tail] =>
         let (_, {Function.params: params, returnType, rest, _}) = value;
-        let a = getTypeName moduleName;
         process_call_properties
           moduleName
           tail
@@ -292,14 +327,20 @@ and process_object moduleName (obj: Ast.Type.Object.t) => {
             if (isLiteral value) {
               result ^ "  let " ^ fixReservedNames (fixUpperCase name) ^ " = " ^ process_type value ^ ";\n";
             }
-
             else {
-              result ^
-              "  external " ^
-              fixReservedNames (fixUpperCase name) ^
-              ": " ^
-              process_type value ^
-              " = \"" ^ moduleName ^ "." ^ name ^ "\" " ^ bsPPX ^ splice ^ ";\n"
+              Ast.Type.(switch value {
+                | (_, Object obj) => {
+                  result ^ "  let module " ^ String.capitalize name ^ " = { \n" ^
+                  (process_object (moduleName ^ "." ^ name) obj)
+                  ^ "  };\n"
+                };
+                | _ => result ^
+                "  external " ^
+                fixReservedNames (fixUpperCase name) ^
+                ": " ^
+                process_type value ^
+                " = \"" ^ moduleName ^ "." ^ name ^ "\" " ^ bsPPX ^ splice ^ ";\n";
+              })
             }
           )
       | _ => assert false

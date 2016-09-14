@@ -1,1 +1,120 @@
+let module IDBEnvironment = {
+  type t;
+  external create: unit => t = "IDBEnvironment" [@@bs.new]; 
+  external indexedDB: t => IDBFactory.t = "" [@@bs.get];
+};
 type TODO;
+let module IDBFactory = {
+  type t;
+  external create: unit => t = "IDBFactory" [@@bs.new]; 
+  external open: t => (string => version::(option float) => IDBOpenDBRequest.t) = "" [@@bs.send];
+  external deleteDatabase: t => (string => IDBOpenDBRequest.t) = "" [@@bs.send];
+  external cmp: t => ('a => 'a => TODO) = "" [@@bs.send];
+};
+let module IDBRequest = {
+  type t;
+  external create: unit => t = "IDBRequest" [@@bs.new]; 
+  external result: t => IDBObjectStore.t = "" [@@bs.get];
+  external error: t => Error.t = "" [@@bs.get];
+  external source: t => TODO = "" [@@bs.get];
+  external transaction: t => IDBTransaction.t = "" [@@bs.get];
+  external readyState: t => TODO = "" [@@bs.get];
+  external onerror: t => ('a => 'a) = "" [@@bs.get];
+  external onsuccess: t => ('a => 'a) = "" [@@bs.get];
+};
+let module IDBOpenDBRequest = {
+  type t;
+  external create: unit => t = "IDBOpenDBRequest" [@@bs.new]; 
+  external onblocked: t => ('a => 'a) = "" [@@bs.get];
+  external onupgradeneeded: t => ('a => 'a) = "" [@@bs.get];
+};
+let module IDBDatabase = {
+  type t;
+  external create: unit => t = "IDBDatabase" [@@bs.new]; 
+  external close: t => (unit => unit) = "" [@@bs.send];
+  external createObjectStore: t => (string => options::(option TODO) => IDBObjectStore.t) = "" [@@bs.send];
+  external deleteObjectStore: t => (string => unit) = "" [@@bs.send];
+  external transaction: t => (TODO => mode::(option TODO) => IDBTransaction.t) = "" [@@bs.send];
+  external name: t => string = "" [@@bs.get];
+  external version: t => float = "" [@@bs.get];
+  external objectStoreNames: t => TODO = "" [@@bs.get];
+  external onabort: t => ('a => 'a) = "" [@@bs.get];
+  external onerror: t => ('a => 'a) = "" [@@bs.get];
+  external onversionchange: t => ('a => 'a) = "" [@@bs.get];
+};
+let module IDBTransaction = {
+  type t;
+  external create: unit => t = "IDBTransaction" [@@bs.new]; 
+  external abort: t => (unit => unit) = "" [@@bs.send];
+  external db: t => IDBDatabase.t = "" [@@bs.get];
+  external error: t => Error.t = "" [@@bs.get];
+  external mode: t => TODO = "" [@@bs.get];
+  external name: t => string = "" [@@bs.get];
+  external objectStore: t => (string => IDBObjectStore.t) = "" [@@bs.send];
+  external onabort: t => ('a => 'a) = "" [@@bs.get];
+  external oncomplete: t => ('a => 'a) = "" [@@bs.get];
+  external onerror: t => ('a => 'a) = "" [@@bs.get];
+};
+let module IDBObjectStore = {
+  type t;
+  external create: unit => t = "IDBObjectStore" [@@bs.new]; 
+  external add: t => ('a => key::(option 'a) => IDBRequest.t) = "" [@@bs.send];
+  external autoIncrement: t => bool = "" [@@bs.get];
+  external clear: t => (unit => IDBRequest.t) = "" [@@bs.send];
+  external createIndex: t => (string => TODO => optionalParameter::(option TODO) => IDBIndex.t) = "" [@@bs.send];
+  external count: t => (keyRange::(option TODO) => IDBRequest.t) = "" [@@bs.send];
+  external delete: t => ('a => IDBRequest.t) = "" [@@bs.send];
+  external deleteIndex: t => (string => unit) = "" [@@bs.send];
+  external get: t => ('a => IDBRequest.t) = "" [@@bs.send];
+  external index: t => (string => IDBIndex.t) = "" [@@bs.send];
+  external indexNames: t => TODO = "" [@@bs.get];
+  external name: t => string = "" [@@bs.get];
+  external keyPath: t => 'a = "" [@@bs.get];
+  external openCursor: t => (range::(option TODO) => direction::(option IDBDirection.t) => IDBRequest.t) = "" [@@bs.send];
+  external openKeyCursor: t => (range::(option TODO) => direction::(option IDBDirection.t) => IDBRequest.t) = "" [@@bs.send];
+  external put: t => ('a => key::(option 'a) => IDBRequest.t) = "" [@@bs.send];
+  external transaction: t => IDBTransaction.t = "" [@@bs.get];
+};
+let module IDBIndex = {
+  type t;
+  external create: unit => t = "IDBIndex" [@@bs.new]; 
+  external count: t => (key::(option TODO) => IDBRequest.t) = "" [@@bs.send];
+  external get: t => (TODO => IDBRequest.t) = "" [@@bs.send];
+  external getKey: t => (TODO => IDBRequest.t) = "" [@@bs.send];
+  external openCursor: t => (range::(option TODO) => direction::(option IDBDirection.t) => IDBRequest.t) = "" [@@bs.send];
+  external openKeyCursor: t => (range::(option TODO) => direction::(option IDBDirection.t) => IDBRequest.t) = "" [@@bs.send];
+  external name: t => string = "" [@@bs.get];
+  external objectStore: t => IDBObjectStore.t = "" [@@bs.get];
+  external keyPath: t => 'a = "" [@@bs.get];
+  external multiEntry: t => bool = "" [@@bs.get];
+  external unique: t => bool = "" [@@bs.get];
+};
+let module IDBKeyRange = {
+  type t;
+  external create: unit => t = "IDBKeyRange" [@@bs.new]; 
+  external bound: t => ('a => 'a => lowerOpen::(option bool) => upperOpen::(option bool) => IDBKeyRange.t) = "" [@@bs.send];
+  external only: t => ('a => IDBKeyRange.t) = "" [@@bs.send];
+  external lowerBound: t => ('a => open::(option bool) => IDBKeyRange.t) = "" [@@bs.send];
+  external upperBound: t => ('a => open::(option bool) => IDBKeyRange.t) = "" [@@bs.send];
+  external lower: t => 'a = "" [@@bs.get];
+  external upper: t => 'a = "" [@@bs.get];
+  external lowerOpen: t => bool = "" [@@bs.get];
+  external upperOpen: t => bool = "" [@@bs.get];
+};
+let module IDBCursor = {
+  type t;
+  external create: unit => t = "IDBCursor" [@@bs.new]; 
+  external advance: t => (float => unit) = "" [@@bs.send];
+  external continue: t => (key::(option 'a) => unit) = "" [@@bs.send];
+  external delete: t => (unit => IDBRequest.t) = "" [@@bs.send];
+  external update: t => ('a => IDBRequest.t) = "" [@@bs.send];
+  external source: t => TODO = "" [@@bs.get];
+  external direction: t => IDBDirection.t = "" [@@bs.get];
+  external key: t => 'a = "" [@@bs.get];
+  external primaryKey: t => 'a = "" [@@bs.get];
+};
+let module IDBCursorWithValue = {
+  type t;
+  external create: unit => t = "IDBCursorWithValue" [@@bs.new]; 
+  external value: t => 'a = "" [@@bs.get];
+};
